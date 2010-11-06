@@ -1,0 +1,16 @@
+Logger/bin/Debug/*
+Logger/bin/Release/*
+Logger/obj/*
+Netba/WebCharts/*
+Netba/bin/Debug/*
+Netba/bin/Release/*
+Netba/obj/*
+StatGrabber/bin/Debug/*
+StatGrabber/bin/Release/*
+StatGrabber/obj/*
+StatGrabberTest/bin/Debug/*
+StatGrabberTest/bin/Release/*
+StatGrabberTest/obj/*
+Netba/bin/Logger.*
+Netba/bin/Netba.*
+Netba/bin/StatGrabber.*
