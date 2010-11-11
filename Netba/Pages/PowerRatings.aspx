@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" Inherits="PowerRatings"
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" Inherits="netba.Pages.PowerRatings"
     Title="Power Ratings" CodeBehind="PowerRatings.aspx.cs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">

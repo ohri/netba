@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="netba.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="netba.Pages.login" %>
 <%@ Register TagPrefix="uc1" TagName="navbar" Src="/Controls/navbar.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="footer" Src="/Controls/footer.ascx" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

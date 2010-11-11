@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Edit Owner Info" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    Inherits="EditInfo" CodeBehind="EditInfo.aspx.cs" %>
+    Inherits="netba.Pages.EditInfo" CodeBehind="EditInfo.aspx.cs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>

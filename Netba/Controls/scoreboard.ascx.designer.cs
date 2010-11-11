@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace netba {
+namespace netba.Controls {
     
     
     public partial class scoreboard {

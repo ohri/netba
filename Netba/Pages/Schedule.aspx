@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" Inherits="Schedule"
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" Inherits="netba.Pages.Schedule"
     Title="Schedule" CodeBehind="Schedule.aspx.cs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">

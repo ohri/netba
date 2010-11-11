@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using Microsoft.ApplicationBlocks.Data;
 using System.Data;
 
-namespace netba
+namespace netba.Controls
 {
     public partial class TopPlayersLastNight : System.Web.UI.UserControl
     {

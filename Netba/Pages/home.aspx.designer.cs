@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace netba {
+namespace netba.Pages {
     
     
     public partial class Home {
@@ -28,7 +28,7 @@ namespace netba {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::netba.NavBar Navbar1;
+        protected global::netba.Controls.NavBar Navbar1;
         
         /// <summary>
         /// Scoreboard1 control.
@@ -37,7 +37,7 @@ namespace netba {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::netba.scoreboard Scoreboard1;
+        protected global::netba.Controls.scoreboard Scoreboard1;
         
         /// <summary>
         /// dlNews control.
@@ -64,7 +64,7 @@ namespace netba {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::netba.TopPlayersLastNight TopPlayersLastNight1;
+        protected global::netba.Controls.TopPlayersLastNight TopPlayersLastNight1;
         
         /// <summary>
         /// Alerts1 control.
@@ -73,7 +73,7 @@ namespace netba {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::netba.Alerts Alerts1;
+        protected global::netba.Controls.Alerts Alerts1;
         
         /// <summary>
         /// Footer1 control.
@@ -82,6 +82,6 @@ namespace netba {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::netba.Footer Footer1;
+        protected global::netba.Controls.Footer Footer1;
     }
 }

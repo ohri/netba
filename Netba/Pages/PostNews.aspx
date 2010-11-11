@@ -1,4 +1,4 @@
-<%@ Page Language="c#" ValidateRequest="false" Inherits="netba.PostNews" CodeBehind="PostNews.aspx.cs" %>
+<%@ Page Language="c#" ValidateRequest="false" Inherits="netba.Pages.PostNews" CodeBehind="PostNews.aspx.cs" %>
 
 <%@ Register TagPrefix="uc1" TagName="footer" Src="/Controls/footer.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="navbar" Src="/Controls/navbar.ascx" %>

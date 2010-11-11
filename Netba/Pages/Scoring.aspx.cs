@@ -13,7 +13,7 @@ using System.Data.SqlClient;
 using Logger;
 using StatGrabber;
 
-namespace netba
+namespace netba.Pages
 {
 	/// <summary>
 	/// Summary description for Scoring.

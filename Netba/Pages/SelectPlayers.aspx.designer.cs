@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace netba {
+namespace netba.Pages {
     
     
     public partial class SelectPlayers {
@@ -28,7 +28,7 @@ namespace netba {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::netba.NavBar Navbar1;
+        protected global::netba.Controls.NavBar Navbar1;
         
         /// <summary>
         /// lblPageTitle control.
@@ -73,6 +73,6 @@ namespace netba {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::netba.Footer Footer1;
+        protected global::netba.Controls.Footer Footer1;
     }
 }

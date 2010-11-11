@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" Inherits="DetailedStats"
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" Inherits="netba.Pages.DetailedStats"
     Title="Detailed Stats" CodeBehind="DetailedStats.aspx.cs" %>
 <%@ Register Assembly="WebChart" Namespace="WebChart" TagPrefix="Web" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">

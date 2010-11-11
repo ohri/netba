@@ -4,7 +4,7 @@
 <%@ Register TagPrefix="uc1" TagName="TopPlayersLastNight" Src="/Controls/TopPlayersLastNight.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="alerts" Src="/Controls/alerts.ascx" %>
 
-<%@ Page Language="c#" Inherits="netba.Home" CodeBehind="home.aspx.cs" %>
+<%@ Page Language="c#" Inherits="netba.Pages.Home" CodeBehind="home.aspx.cs" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
 <html>

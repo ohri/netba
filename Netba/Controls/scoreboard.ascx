@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="scoreboard.ascx.cs"
-    Inherits="netba.scoreboard" %>
+    Inherits="netba.Controls.scoreboard" %>
 <link href="/Styles/netba.css" type="text/css" rel="stylesheet" />
 <asp:Repeater ID="dlGames" runat="server">
     <ItemTemplate>

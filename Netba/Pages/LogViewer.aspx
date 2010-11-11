@@ -1,7 +1,7 @@
 <%@ Register TagPrefix="uc1" TagName="footer" Src="/Controls/footer.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="navbar" Src="/Controls/navbar.ascx" %>
 
-<%@ Page Language="c#" Inherits="netba.LogViewer" CodeBehind="LogViewer.aspx.cs" %>
+<%@ Page Language="c#" Inherits="netba.Pages.LogViewer" CodeBehind="LogViewer.aspx.cs" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
 <html>

@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" Inherits="admin"
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" Inherits="netba.Pages.admin"
     Title="Site Admin" CodeBehind="admin.aspx.cs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">

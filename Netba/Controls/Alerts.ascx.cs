@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using Microsoft.ApplicationBlocks.Data;
 
-namespace netba
+namespace netba.Controls
 {
     public partial class Alerts : System.Web.UI.UserControl
     {

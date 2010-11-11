@@ -10,7 +10,7 @@ using System.Web.Security;
 using Logger;
 using System.Data;
 
-namespace netba
+namespace netba.Pages
 {
     public partial class login : System.Web.UI.Page
     {

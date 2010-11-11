@@ -1,4 +1,4 @@
-<%@ Page Language="c#" Inherits="netba.Lineups" CodeBehind="Lineups.aspx.cs" %>
+<%@ Page Language="c#" Inherits="netba.Pages.Lineups" CodeBehind="Lineups.aspx.cs" %>
 
 <%@ Register TagPrefix="uc1" TagName="footer" Src="/Controls/footer.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="navbar" Src="/Controls/navbar.ascx" %>

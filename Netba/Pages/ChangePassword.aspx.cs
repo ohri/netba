@@ -12,7 +12,7 @@ using Encryption;
 using Microsoft.ApplicationBlocks.Data;
 using Logger;
 
-namespace netba
+namespace netba.Pages
 {
 	/// <summary>
 	/// Summary description for ChangePassword.

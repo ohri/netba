@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    Inherits="draft" Title="Draft" Codebehind="Draft.aspx.cs" %>
+    Inherits="netba.Pages.draft" Title="Draft" Codebehind="Draft.aspx.cs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="Server">
 Draft

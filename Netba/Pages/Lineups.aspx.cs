@@ -13,7 +13,7 @@ using System.Text;
 using Logger;
 using netba;
 
-namespace netba
+namespace netba.Pages
 {
 	/// <summary>
 	/// Summary description for Lineups.

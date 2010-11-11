@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NavBar.ascx.cs" Inherits="netba.NavBar" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NavBar.ascx.cs" Inherits="netba.Controls.NavBar" %>
 <table cellpadding="0" border="0" cellspacing="0">
     <tr valign="bottom" width="160px">
         <td valign="bottom">

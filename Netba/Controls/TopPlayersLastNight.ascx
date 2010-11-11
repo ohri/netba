@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TopPlayersLastNight.ascx.cs"
-    Inherits="netba.TopPlayersLastNight" %>
-<link href="Styles\netba.css" type="text/css" rel="stylesheet" />
+    Inherits="netba.Controls.TopPlayersLastNight" %>
+<link href="/Styles/netba.css" type="text/css" rel="stylesheet" />
 <asp:Panel ID="Panel1" runat="server" BorderStyle="Solid" BorderColor="Silver" BackColor="White">
     <center>
         <strong>Top Performances</strong></center>

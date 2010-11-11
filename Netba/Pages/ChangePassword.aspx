@@ -1,7 +1,7 @@
 <%@ Register TagPrefix="uc1" TagName="navbar" Src="/Controls/navbar.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="footer" Src="/Controls/footer.ascx" %>
 
-<%@ Page Language="c#" Inherits="netba.ChangePassword" CodeBehind="ChangePassword.aspx.cs" %>
+<%@ Page Language="c#" Inherits="netba.Pages.ChangePassword" CodeBehind="ChangePassword.aspx.cs" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
 <html>

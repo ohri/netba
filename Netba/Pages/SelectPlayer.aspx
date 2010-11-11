@@ -1,4 +1,4 @@
-<%@ Page Language="c#" Inherits="netba.SelectPlayer" CodeBehind="SelectPlayer.aspx.cs" %>
+<%@ Page Language="c#" Inherits="netba.Pages.SelectPlayer" CodeBehind="SelectPlayer.aspx.cs" %>
 
 <%@ Register TagPrefix="uc1" TagName="navbar" Src="/Controls/navbar.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="footer" Src="/Controls/footer.ascx" %>

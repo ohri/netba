@@ -12,7 +12,7 @@ using System.Web.UI.HtmlControls;
 using Microsoft.ApplicationBlocks.Data;
 using Logger;
 
-namespace netba
+namespace netba.Pages
 {
 	/// <summary>
 	/// Summary description for SelectPlayer.

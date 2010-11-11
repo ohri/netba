@@ -10,15 +10,18 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using Microsoft.ApplicationBlocks.Data;
 
-public partial class TeamHistory : System.Web.UI.Page
+namespace netba.Pages
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class TeamHistory : System.Web.UI.Page
     {
-        DataSet record = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-            "spGetFranchiseRecords", Request.QueryString["TeamId"]);
-        dgFranchiseRecord.DataSource = record;
-        dgFranchiseRecord.DataBind();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            DataSet record = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spGetFranchiseRecords", Request.QueryString["TeamId"]);
+            dgFranchiseRecord.DataSource = record;
+            dgFranchiseRecord.DataBind();
 
-        lblPageTitle.Text = record.Tables[0].Rows[0]["Team"] + " Team History";
+            lblPageTitle.Text = record.Tables[0].Rows[0]["Team"] + " Team History";
+        }
     }
 }

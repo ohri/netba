@@ -10,9 +10,9 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using Microsoft.ApplicationBlocks.Data;
 
-namespace netba
+namespace netba.Pages
 {
-	/// <summary>
+    /// <summary>
 	/// Summary description for SelectPlayers.
 	/// </summary>
 	public partial class SelectPlayers : System.Web.UI.Page

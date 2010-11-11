@@ -9,22 +9,24 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using Microsoft.ApplicationBlocks.Data;
-using netba;
 
-public partial class Transactions : System.Web.UI.Page
+namespace netba.Pages
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class Transactions : System.Web.UI.Page
     {
-        Session["TeamId"] = DBUtilities.GetUsersTeamId(Page.User.Identity.Name);
-        DataSet ds = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-            "spFetchTeamTransactions", Session["TeamId"]);
-        dgTransactions.DataSource = ds;
-        dgTransactions.DataBind();
-    }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Session["TeamId"] = DBUtilities.GetUsersTeamId(Page.User.Identity.Name);
+            DataSet ds = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spFetchTeamTransactions", Session["TeamId"]);
+            dgTransactions.DataSource = ds;
+            dgTransactions.DataBind();
+        }
 
-    protected void dgTransactions_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
-    {
-        dgTransactions.CurrentPageIndex = e.NewPageIndex;
-        dgTransactions.DataBind();
+        protected void dgTransactions_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
+        {
+            dgTransactions.CurrentPageIndex = e.NewPageIndex;
+            dgTransactions.DataBind();
+        }
     }
 }

@@ -2,7 +2,7 @@
 <%@ Register TagPrefix="uc1" TagName="footer" Src="/Controls/footer.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="Scoreboard" Src="/Controls/Scoreboard.ascx" %>
 
-<%@ Page Language="c#" Inherits="netba.BoxScore" CodeBehind="BoxScore.aspx.cs" %>
+<%@ Page Language="c#" Inherits="netba.Pages.BoxScore" CodeBehind="BoxScore.aspx.cs" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
 <html>

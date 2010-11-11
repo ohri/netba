@@ -9,35 +9,37 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using Microsoft.ApplicationBlocks.Data;
-using netba;
 
-public partial class Schedule : System.Web.UI.Page
+namespace netba.Pages
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class Schedule : System.Web.UI.Page
     {
-        if (!IsPostBack)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            DataSet seasons = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-        "spFetchSeasons");
-            ddlSeasons.DataSource = seasons;
-            ddlSeasons.DataTextField = "Season";
-            ddlSeasons.DataValueField = "SeasonId";
-            ddlSeasons.DataBind();
-            ddlSeasons.SelectedValue = DBUtilities.GetCurrentSeasonId().ToString();
+            if (!IsPostBack)
+            {
+                DataSet seasons = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+            "spFetchSeasons");
+                ddlSeasons.DataSource = seasons;
+                ddlSeasons.DataTextField = "Season";
+                ddlSeasons.DataValueField = "SeasonId";
+                ddlSeasons.DataBind();
+                ddlSeasons.SelectedValue = DBUtilities.GetCurrentSeasonId().ToString();
 
-            DataSet schedule = schedule = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-                "spGetFullSchedule");
+                DataSet schedule = schedule = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spGetFullSchedule");
 
+                dgSchedules.DataSource = schedule;
+                dgSchedules.DataBind();
+            }
+        }
+
+        protected void btnGo_Click(object sender, System.EventArgs e)
+        {
+            DataSet schedule = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spGetFullSchedule", ddlSeasons.SelectedItem.Value);
             dgSchedules.DataSource = schedule;
             dgSchedules.DataBind();
         }
-    }
-
-    protected void btnGo_Click(object sender, System.EventArgs e)
-    {
-        DataSet schedule = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-            "spGetFullSchedule", ddlSeasons.SelectedItem.Value);
-        dgSchedules.DataSource = schedule;
-        dgSchedules.DataBind();
     }
 }

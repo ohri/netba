@@ -37,7 +37,7 @@ namespace Netba {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::netba.NavBar Navbar2;
+        protected global::netba.Controls.NavBar Navbar2;
         
         /// <summary>
         /// Scoreboard2 control.
@@ -46,7 +46,7 @@ namespace Netba {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::netba.scoreboard Scoreboard2;
+        protected global::netba.Controls.scoreboard Scoreboard2;
         
         /// <summary>
         /// lblPageTitle control.
@@ -82,6 +82,6 @@ namespace Netba {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::netba.Footer Footer1;
+        protected global::netba.Controls.Footer Footer1;
     }
 }
