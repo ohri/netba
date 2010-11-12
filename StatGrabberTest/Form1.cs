@@ -139,7 +139,7 @@ namespace StatGrabberTest
 			ArrayList perfs = sg.GetPerformances( urls );
 			tbOutput.Text += "Ran GetPerformances, got back " + perfs.Count + " perfs\r\n";
 
-			SqlConnection con = new SqlConnection( @"data source=localhost\sqlexpress;initial catalog=netba;user id=netba_web;password=go_muddogs07!;packet size=4096" );
+			SqlConnection con = new SqlConnection( @"data source=localhost\sqlexpress;initial catalog=netba;user id=netba_web;password=go_muddogs07!;packet size=4096;Persist Security Info=true" );
 			ArrayList problems = sg.SavePerformances( con, perfs, mcCalendar.SelectionStart );
 			tbOutput.Text += "Ran SavePerformances, got back " + problems.Count + " problems\r\n";
 			foreach( StatGrabber.PlayerPerformance p in problems )
