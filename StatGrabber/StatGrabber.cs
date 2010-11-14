@@ -191,7 +191,11 @@ namespace StatGrabber
                         p.DefensiveRebounds, p.Fouls, p.FTAttempts, p.FTsMade, p.OffensiveRebounds,
                         p.PlusMinus, p.ShotAttempts, p.ShotsMade, p.Steals, p.ThreeAttempts,
                         p.ThreesMade, p.Turnovers );
-                    db.ExecuteScalar( cmd, trans );
+                    int x = (int)db.ExecuteScalar( cmd, trans );
+                    if( x != 0 )
+                    {
+                        problems.Add( p );
+                    }
                 }
                 trans.Commit();
             }

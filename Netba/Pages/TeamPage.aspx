@@ -58,6 +58,13 @@
                                     <asp:Literal ID="litIR" runat="server"></asp:Literal></center>
                             </ItemTemplate>
                         </asp:TemplateColumn>
+<%--                        <asp:TemplateColumn HeaderText="Trends">
+                            <ItemTemplate>
+                                <center>
+                                    <asp:Literal ID="litSparkline" runat="server"></asp:Literal>
+                                </center>
+                            </ItemTemplate>
+                        </asp:TemplateColumn>--%>
                     </Columns>
                 </asp:DataGrid>
             </td>

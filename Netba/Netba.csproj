@@ -154,6 +154,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Controls\Sparkline.ashx" />
     <Compile Include="Helpers\AutoSub.cs" />
     <Compile Include="Helpers\SupportFunctions.cs" />
     <Compile Include="Helpers\TransactionTypes.cs" />
