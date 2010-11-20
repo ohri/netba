@@ -72,13 +72,13 @@ namespace netba.Pages
 
 		protected void ButtonProcessDaily_Click(object sender, System.EventArgs e)
 		{
-            tbOutput.Text += "\r\n" + calStatDate.SelectedDate.ToString() + "\r\n";
+            tbOutput.Text += "\r\nScraping " + calStatDate.SelectedDate.ToString() + "\r\n";
 
             StatGrabber.StatGrabber sg = new StatGrabber.StatGrabber();
 
             ArrayList urls = sg.GetGames( this.calStatDate.SelectedDate );
 
-            tbOutput.Text += "Ran GetGames, got back " + urls.Count + " games\r\n";
+            tbOutput.Text += "Found " + urls.Count + " games\r\n";
 
             SqlDatabase db = new SqlDatabase( @"data source=localhost\sqlexpress;initial catalog=netba;user id=netba_web;password=go_muddogs07!;Persist Security Info=true" );
             ArrayList problems = new ArrayList();
@@ -98,6 +98,7 @@ namespace netba.Pages
 
             if( problems.Count > 0 )
             {
+                tbOutput.Text += "\r\nFound the following problems:\r\n";
                 foreach( StatGrabber.PlayerPerformance p in problems )
                 {
                     tbOutput.Text += p.FirstName + " " + p.LastName + " " + p.TeamName + "\r\n";
@@ -105,9 +106,10 @@ namespace netba.Pages
             }
             else
             {
-                tbOutput.Text += "No problems identifying players\r\n";
+                tbOutput.Text += "\r\nNo problems identifying players\r\n";
             }
 
+            tbOutput.Text += "\r\n";
             tbOutput.Text += sg.UpdateAveragesAndScores( db, calStatDate.SelectedDate );
 
             Log.AddLogEntry( 
@@ -119,6 +121,11 @@ namespace netba.Pages
         {
             string result = AutoSub.ProcessAutosubs( ddlWeeks.SelectedValue );
             tbOutput.Text += result;
+        }
+
+        protected void ButtonClear_Click( object sender, EventArgs e )
+        {
+            tbOutput.Text = "";
         }
     }
 }

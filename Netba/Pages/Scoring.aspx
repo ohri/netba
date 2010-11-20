@@ -45,9 +45,11 @@
                 <asp:Calendar ID="calStatDate" runat="server"></asp:Calendar>
                 <p>
                     <asp:Button ID="ButtonProcessDaily" runat="server" Text="Get Stats" OnClick="ButtonProcessDaily_Click">
-                    </asp:Button></p>
+                    </asp:Button>&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="ButtonClear" runat="server" onclick="ButtonClear_Click" 
+                        Text="Clear Textbox" /></p>
                 <p>
-                    <asp:TextBox ID="tbOutput" runat="server" ReadOnly="True" Width="272px" Height="239px"
+                    <asp:TextBox ID="tbOutput" runat="server" ReadOnly="True" Width="622px" Height="348px"
                         TextMode="MultiLine"></asp:TextBox></p>
             </td>
         </tr>
