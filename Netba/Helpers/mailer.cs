@@ -69,12 +69,6 @@ public class mailer
     public static bool sendSynchronousPrivateMail(string subject, string body, bool isHTML, string user, string toEmail, string fromEmail)
     {
         SmtpClient client = new SmtpClient();
-
-        //if ( toEmail != "ramanohri@gmail.com" )
-        //{
-        //    toEmail = "ohri@sep.com";
-        //}
-
         MailMessage m = new MailMessage(
             fromEmail,
             toEmail,

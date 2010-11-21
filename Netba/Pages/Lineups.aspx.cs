@@ -15,29 +15,11 @@ using netba;
 
 namespace netba.Pages
 {
-	/// <summary>
-	/// Summary description for Lineups.
-	/// </summary>
 	public partial class Lineups : System.Web.UI.Page
 	{
 	
 		protected void Page_Load(object sender, System.EventArgs e)
 		{
-            //lblPG.Attributes.Add("onclick", "assignPlayer( this, document.Form1.hiddenSPG )");
-            //lblSG.Attributes.Add("onclick", "assignPlayer( this, document.Form1.hiddenSSG )");
-//            lblPG.Attributes.Add("onclick", @"$(""#hiddenSPG"").val( $(""#lbRoster"").val() );$(""#lblPG"").html( $(""#lbRoster :selected"").text() );");
-            //lblSG.Attributes.Add("onclick", @"$(""#hiddenSSG"").val( $(""#lbRoster"").val() );$(""#lblSG"").html( $(""#lbRoster :selected"").text() );");
-            //lblSF.Attributes.Add("onclick", @"$(""#hiddenSSF"").val( $(""#lbRoster"").val() );$(""#lblSF"").html( $(""#lbRoster :selected"").text() );");
-            //lblPF.Attributes.Add("onclick", @"$(""#hiddenSPF"").val( $(""#lbRoster"").val() );$(""#lblPF"").html( $(""#lbRoster :selected"").text() );");
-            //lblC.Attributes.Add("onclick", @"$(""#hiddenSC"").val( $(""#lbRoster"").val() );$(""#lblC"").html( $(""#lbRoster :selected"").text() );");
-            //lblBackupPG.Attributes.Add( "onclick", "assignPlayer( this, document.Form1.hiddenBPG )" );
-            //lblBackupSG.Attributes.Add( "onclick", "assignPlayer( this, document.Form1.hiddenBSG )" );
-            //lblBackupSF.Attributes.Add( "onclick", "assignPlayer( this, document.Form1.hiddenBSF )" );
-            //lblBackupPF.Attributes.Add( "onclick", "assignPlayer( this, document.Form1.hiddenBPF )" );
-            //lblBackupC.Attributes.Add( "onclick", "assignPlayer( this, document.Form1.hiddenBC )" );
-            //lblGarbage1.Attributes.Add( "onclick", "assignPlayer( this, document.Form1.hiddenG1 )" );
-            //lblGarbage2.Attributes.Add( "onclick", "assignPlayer( this, document.Form1.hiddenG2 )" );
-
 			if( !IsPostBack )
 			{
                 DataSet teams = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
@@ -118,7 +100,7 @@ namespace netba.Pages
 				"spGetGameDetails", GameId );
 			DataRow r = GameInfo.Tables[0].Rows[0];
 
-			this.lblGameHeader.Text = "";
+			lblGameHeader.Text = "";
 
 			Session["TeamId"] = lbTeams.SelectedValue;
 
@@ -134,12 +116,6 @@ namespace netba.Pages
 			lbRoster.DataTextField = "player";
 			lbRoster.DataValueField = "PlayerId";
 			lbRoster.DataBind();
-
-            //StringBuilder s = new StringBuilder();
-            //foreach( DataRow row in lineup.Tables[0].Rows )
-            //{
-            //    s.Append(@"<input type=""hidden"" name="""">");
-            //}
 
 			// if there was an existing lineup, prepopulate!
 			if( lineup.Tables[0].Rows[0]["LineupId"] == DBNull.Value )
@@ -187,12 +163,10 @@ namespace netba.Pages
 				lblGarbage1.Text = lineup.Tables[0].Rows[10]["player"].ToString();
 				lblGarbage2.Text = lineup.Tables[0].Rows[11]["player"].ToString();
 			}
-
 		}
 
 		protected void ButtonSubmitLineup_Click(object sender, System.EventArgs e)
 		{
-
 			Log.AddLogEntry( LogEntryTypes.LineupSubmission, 
 				Page.User.Identity.Name, 
 				"Lineup submitted for team id " + Session["TeamId"] + ", gameid " + Session["LineupGameId"] );
@@ -202,15 +176,17 @@ namespace netba.Pages
 			{
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
 					"spClearTeamLineup", Session["TeamId"], Session["LineupGameId"] );
-			}
-			catch( Exception ex )
-			{
-				Log.AddLogEntry( Logger.LogEntryTypes.SystemError, 
-					Page.User.Identity.Name, 
-					"Failed to clear existing lineup for teamid " + Session["TeamId"] + ", gameid " + Session["LineupGameId"] + " with exception: " + ex.Message );
-			}
+            }
+            catch( Exception ex )
+            {
+                Log.AddLogEntry( Logger.LogEntryTypes.SystemError,
+                    Page.User.Identity.Name,
+                    "Failed to clear existing lineup for teamid " + Session["TeamId"] + ", gameid " + Session["LineupGameId"] + " with exception: " + ex.Message );
+                Response.Redirect( "/Static/default_error.html" );
+                return;
+            }
 
-			// write each of the new lineup items
+            // write each of the new lineup items
 			try
 			{
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
@@ -245,60 +221,69 @@ namespace netba.Pages
                     SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
 						"spSetPlayerLineupStatus", Request.Params["hiddenG2"], "G", Session["TeamId"], Session["LineupGameId"] );
 				}
-			}
+                
+            }
 			catch( Exception ex )
 			{
 				Log.AddLogEntry( Logger.LogEntryTypes.SystemError, 
 					Page.User.Identity.Name, 
 					"Failed to save new lineup records for teamid " + Session["TeamId"] + ", gameid " + Session["LineupGameId"] + " with exception: " + ex.Message );
-			}
+                Response.Redirect( "/Static/default_error.html" );
+                return;
+            }
 
-			// send the email
-            DataSet GameInfo = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-				"spGetGameDetails", Session["LineupGameId"] );
-			DataRow r = GameInfo.Tables[0].Rows[0];
-			String MsgBody = "<h2><font face=arial>";
-			String thisteam;
-			if( r["hometeamid"].ToString() == Session["TeamId"].ToString() )
-			{
-				MsgBody += r["home"].ToString() + " Lineup vs. " + r["visitor"].ToString() + "</font></h2>";
-				thisteam = r["home"].ToString();
-			}
-			else
-			{
-				MsgBody += r["visitor"].ToString() + " Lineup @ " + r["home"].ToString() + "</font></h2>";
-				thisteam = r["visitor"].ToString();
-			}
-			MsgBody += "<font face=arial><p><strong>Week " + r["Week"].ToString() + ": " + r["NumGames"].ToString() + " games</strong></p><br />";
+            SendLineupEmail( int.Parse( Session["TeamId"].ToString() ), int.Parse( Session["LineupGameId"].ToString() ) );
 
-			MsgBody += "<strong>Comment: </strong>" + tbComment.Text + "<br />";
-			MsgBody += "<i>&nbsp;&nbsp;-- " + Page.User.Identity.Name.ToString() + "</i></font><br /><br />";
+            Response.Redirect( "/Pages/home.aspx" );
+        }
 
-            DataSet lineup = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-				"spGetTeamLineup", Session["LineupGameId"], Session["TeamId"] );
+        protected void SendLineupEmail( int teamid, int gameid )
+        {
+            DataSet GameInfo = SqlHelper.ExecuteDataset( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spGetGameDetails", gameid );
+            DataRow r = GameInfo.Tables[0].Rows[0];
+            String MsgBody = "<h2><font face=arial>";
+            String thisteam;
+            if( r["hometeamid"].ToString() == teamid.ToString() )
+            {
+                MsgBody += r["home"].ToString() + " Lineup vs. " + r["visitor"].ToString() + "</font></h2>";
+                thisteam = r["home"].ToString();
+            }
+            else
+            {
+                MsgBody += r["visitor"].ToString() + " Lineup @ " + r["home"].ToString() + "</font></h2>";
+                thisteam = r["visitor"].ToString();
+            }
+            MsgBody += "<font face=arial><p><strong>Week " + r["Week"].ToString() + ": " + r["NumGames"].ToString() + " games</strong></p><br />";
 
-			MsgBody += "<font face=arial><strong><u>Starters</u></strong><br />";
-			MsgBody +=  lineup.Tables[0].Rows[0]["player"] + "<br />";
-			MsgBody +=  lineup.Tables[0].Rows[1]["player"] + "<br />";
-			MsgBody +=  lineup.Tables[0].Rows[2]["player"] + "<br />";
-			MsgBody +=  lineup.Tables[0].Rows[3]["player"] + "<br />";
-			MsgBody +=  lineup.Tables[0].Rows[4]["player"] + "<br />";
-			MsgBody += "<br /><strong><u>Backups</u></strong><br />";
-			MsgBody +=  lineup.Tables[0].Rows[5]["player"] + "<br />";
-			MsgBody +=  lineup.Tables[0].Rows[6]["player"] + "<br />";
-			MsgBody +=  lineup.Tables[0].Rows[7]["player"] + "<br />";
-			MsgBody +=  lineup.Tables[0].Rows[8]["player"] + "<br />";
-			MsgBody +=  lineup.Tables[0].Rows[9]["player"] + "<br />";
-			MsgBody += "<br /><strong><u>Garbage</u></strong><br />";
-			if( lineup.Tables[0].Rows.Count > 10 )
-			{
-				MsgBody +=  lineup.Tables[0].Rows[10]["player"] + "<br />";
-			}
-			if( lineup.Tables[0].Rows.Count > 11 )
-			{
-				MsgBody +=  lineup.Tables[0].Rows[11]["player"] + "<br />";
-			}
-			MsgBody += "</font>";
+            MsgBody += "<strong>Comment: </strong>" + tbComment.Text + "<br />";
+            MsgBody += "<i>&nbsp;&nbsp;-- " + Page.User.Identity.Name.ToString() + "</i></font><br /><br />";
+
+            DataSet lineup = SqlHelper.ExecuteDataset( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spGetTeamLineupSimple", gameid, teamid );
+
+            MsgBody += "<font face=arial><strong><u>Starters</u></strong><br />";
+            MsgBody += lineup.Tables[0].Rows[0]["player"] + "<br />";
+            MsgBody += lineup.Tables[0].Rows[1]["player"] + "<br />";
+            MsgBody += lineup.Tables[0].Rows[2]["player"] + "<br />";
+            MsgBody += lineup.Tables[0].Rows[3]["player"] + "<br />";
+            MsgBody += lineup.Tables[0].Rows[4]["player"] + "<br />";
+            MsgBody += "<br /><strong><u>Backups</u></strong><br />";
+            MsgBody += lineup.Tables[0].Rows[5]["player"] + "<br />";
+            MsgBody += lineup.Tables[0].Rows[6]["player"] + "<br />";
+            MsgBody += lineup.Tables[0].Rows[7]["player"] + "<br />";
+            MsgBody += lineup.Tables[0].Rows[8]["player"] + "<br />";
+            MsgBody += lineup.Tables[0].Rows[9]["player"] + "<br />";
+            MsgBody += "<br /><strong><u>Garbage</u></strong><br />";
+            if( lineup.Tables[0].Rows.Count > 10 )
+            {
+                MsgBody += lineup.Tables[0].Rows[10]["player"] + "<br />";
+            }
+            if( lineup.Tables[0].Rows.Count > 11 )
+            {
+                MsgBody += lineup.Tables[0].Rows[11]["player"] + "<br />";
+            }
+            MsgBody += "</font>";
 
             String subject = thisteam + "Lineup for Week " + r["Week"].ToString();
             if( tbComment.Text.Length > 0 )
@@ -311,9 +296,6 @@ namespace netba.Pages
                 MsgBody,
                 true,
                 Page.User.Identity.Name );
-
-            Response.Redirect("/Pages/home.aspx");
-		}
-
+        }
 	}
 }
