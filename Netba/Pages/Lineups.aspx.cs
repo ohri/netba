@@ -11,7 +11,6 @@ using System.Web.UI.HtmlControls;
 using Microsoft.ApplicationBlocks.Data;
 using System.Text;
 using Logger;
-using netba;
 
 namespace netba.Pages
 {
