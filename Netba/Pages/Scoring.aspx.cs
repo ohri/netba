@@ -65,8 +65,11 @@ namespace netba.Pages
 
 		protected void ButtonFinalize_Click(object sender, System.EventArgs e)
 		{
+            SqlDatabase db = new SqlDatabase( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"] );
+            tbOutput.Text += Autosub( ddlWeeks.SelectedValue, db, calStatDate.SelectedDate );
             SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
 				"spFinalizeGames", Convert.ToInt32( ddlWeeks.SelectedValue ) );
+            tbOutput.Text += "\r\nGames finalized for week " + ddlWeeks.SelectedItem.Text;
 			Log.AddLogEntry( LogEntryTypes.WeekFinalized, Page.User.Identity.Name, "Finalized stats for weekid " + ddlWeeks.SelectedValue + ", week " + ddlWeeks.SelectedItem.Text );
 		}
 
@@ -80,7 +83,7 @@ namespace netba.Pages
 
             tbOutput.Text += "Found " + urls.Count + " games\r\n";
 
-            SqlDatabase db = new SqlDatabase( @"data source=localhost\sqlexpress;initial catalog=netba;user id=netba_web;password=go_muddogs07!;Persist Security Info=true" );
+            SqlDatabase db = new SqlDatabase( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"] );
             ArrayList problems = new ArrayList();
             foreach( string url in urls )
             {
@@ -119,13 +122,25 @@ namespace netba.Pages
 		}
         protected void btnAutosub_Click( object sender, EventArgs e )
         {
-            string result = AutoSub.ProcessAutosubs( ddlWeeks.SelectedValue );
-            tbOutput.Text += result;
+            //string result = AutoSub.ProcessAutosubs( ddlWeeks.SelectedValue );
+            //tbOutput.Text += result;
+            //StatGrabber.StatGrabber sg = new StatGrabber.StatGrabber();
+            SqlDatabase db = new SqlDatabase( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"] );
+            //tbOutput.Text += sg.UpdateAveragesAndScores( db, calStatDate.SelectedDate );
+            tbOutput.Text += Autosub( ddlWeeks.SelectedValue, db, calStatDate.SelectedDate );
         }
 
         protected void ButtonClear_Click( object sender, EventArgs e )
         {
             tbOutput.Text = "";
+        }
+
+        protected string Autosub( string weekId, SqlDatabase db, DateTime selectedDate )
+        {
+            string result = AutoSub.ProcessAutosubs( weekId );
+            StatGrabber.StatGrabber sg = new StatGrabber.StatGrabber();
+            result += sg.UpdateAveragesAndScores( db, selectedDate );
+            return result;
         }
     }
 }

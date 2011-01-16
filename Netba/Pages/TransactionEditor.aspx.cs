@@ -198,11 +198,17 @@ namespace netba.Pages
         }
         protected void btnUpSigning_Click(object sender, EventArgs e)
         {
-            move(lbComing, -1);
+            if( lbComing.SelectedIndex > 0 )
+            {
+                move( lbComing, -1 );
+            }
         }
         protected void btnDownSigning_Click(object sender, EventArgs e)
         {
-            move(lbComing, 1);
+            if( lbComing.SelectedIndex + 1 < lbComing.Items.Count )
+            {
+                move( lbComing, 1 );
+            }
         }
         protected void btnRemoveCut_Click(object sender, EventArgs e)
         {
@@ -210,11 +216,17 @@ namespace netba.Pages
         }
         protected void btnUpCut_Click(object sender, EventArgs e)
         {
-            move(lbGoing, -1);
+            if( lbGoing.SelectedIndex > 0 )
+            {
+                move( lbGoing, -1 );
+            }
         }
         protected void btnDownCut_Click(object sender, EventArgs e)
         {
-            move(lbGoing, 1);
+            if( lbGoing.SelectedIndex + 1 < lbGoing.Items.Count )
+            {
+                move( lbGoing, 1 );
+            }
         }
         protected void btnRemoveIR_Click(object sender, EventArgs e)
         {
