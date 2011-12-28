@@ -2,6 +2,7 @@
 <%@ Register TagPrefix="uc1" TagName="footer" Src="/Controls/footer.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="Scoreboard" Src="/Controls/Scoreboard.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="TopPlayersLastNight" Src="/Controls/TopPlayersLastNight.ascx" %>
+<%@ Register TagPrefix="uc1" TagName="TradeBlock" Src="/Controls/TradeBlock.ascx" %>
 <%@ Register TagPrefix="uc1" TagName="alerts" Src="/Controls/alerts.ascx" %>
 
 <%@ Page Language="c#" Inherits="netba.Pages.Home" CodeBehind="home.aspx.cs" %>
@@ -58,6 +59,9 @@
                 </p>
                 <p>
                     <uc1:alerts ID="Alerts1" runat="server"></uc1:alerts>
+                </p>
+                <p>
+                    <uc1:TradeBlock ID="TradeBlock" runat="server"></uc1:TradeBlock>
                 </p>
             </td>
         </tr>

@@ -26,7 +26,7 @@ Draft
             <Columns>
                 <asp:BoundColumn DataField="Pick" ReadOnly="True" HeaderText="Pick" DataFormatString="{0}">
                 </asp:BoundColumn>
-                <asp:BoundColumn DataField="PickTime" ReadOnly="True" HeaderText="Time" DataFormatString="{0}">
+                <asp:BoundColumn DataField="PickTime" ReadOnly="True" HeaderText="Time" DataFormatString="{0:g}">
                 </asp:BoundColumn>
                 <asp:BoundColumn DataField="OwningTeamAbbrev" ReadOnly="True" HeaderText="Owning"
                     DataFormatString="{0}"></asp:BoundColumn>

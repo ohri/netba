@@ -32,12 +32,41 @@ namespace netba.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
             // validate the tradeid passed in
-            if (Request.QueryString["TradeId"] == null)
+            if( Request.QueryString["TradeId"] != null )
             {
-                // this is bad
-                Response.Redirect("/Static/bad_params.html");
+                m_TradeId = Int32.Parse( Request.QueryString["TradeId"] );
             }
-
+            else
+            {
+                if( ViewState["TradeId"] != null )
+                {
+                    m_TradeId = Int32.Parse( ViewState["TradeId"].ToString() );
+                }
+                else
+                {
+                    if( Request.QueryString["PlayerId"] == null )
+                    {
+                        // this is bad
+                        Response.Redirect( "/Static/bad_params.html" );
+                    }
+                    else
+                    {
+                        if( ViewState["TradeId"] == null )
+                        {
+                            // new use case - if no trade id, then see if playerid paramter was provided
+                            // if so, create a new trade right here between this owner and the owner
+                            // of the player in question
+                            m_TradeId = (int)SqlHelper.ExecuteScalar(
+                                System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                                "spCreateTradeFromPlayerId",
+                                Int32.Parse( Request.QueryString["PlayerId"] ),
+                                Page.User.Identity.Name );
+                            ViewState["TradeId"] = m_TradeId;
+                        }
+                    }
+                }
+            }
+            
             // make sure this is not the trade deadzone (between week 15
             // and end of season
             int Allowed = (int)SqlHelper.ExecuteScalar(
@@ -50,7 +79,6 @@ namespace netba.Pages
             }
 
             // validate that the current user is allowed see this
-            m_TradeId = int.Parse(Request.QueryString["TradeId"]);
             Allowed = (int)SqlHelper.ExecuteScalar(
                 System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
                 "spUserAllowedToSeeTrade",

@@ -108,7 +108,8 @@ namespace netba.Pages
                     DataRow x = ds.Tables[0].NewRow();
                     x["Player"] = -1;
                     x["Pick"] = ds.Tables[0].Rows[i]["Round"];
-                    x["PickTime"] = ds.Tables[0].Rows[i]["PickDate"];
+                    DateTime d = DateTime.Parse( ds.Tables[0].Rows[i]["PickDate"].ToString() );
+                    x["PickTime"] = d.ToString( "g" );
                     lastround = Convert.ToInt32(ds.Tables[0].Rows[i]["Round"].ToString(), 10);
                     ds.Tables[0].Rows.InsertAt(x, i);
 

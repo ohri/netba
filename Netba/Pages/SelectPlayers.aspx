@@ -18,33 +18,39 @@
             </td>
             <td>
                 <br />
-                <p>
-                    &nbsp;</p>
-                <p>
-                    &nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
                 <asp:Label ID="lblPageTitle" runat="server" CssClass="pagetitle">Select Players</asp:Label>
-                <hr align="left" width="100%" color="red" size="1">
-                <font face="Arial" size="6">
-                    <table border="0">
-                        <tr>
-                            <td style="width: 120px">
-                                <asp:RadioButtonList ID="rblPositions" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rblPositions_SelectedIndexChanged">
-                                    <asp:ListItem Value="%G%" Selected="True">Guards</asp:ListItem>
-                                    <asp:ListItem Value="%F%">Forwards</asp:ListItem>
-                                    <asp:ListItem Value="%C%">Centers</asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-                            <td>
-                                <asp:ListBox ID="lbPlayers" runat="server" Width="224px" Height="176px" SelectionMode="Multiple">
-                                </asp:ListBox>
-                            </td>
-                        </tr>
-                    </table>
-                    <center>
-                        <asp:Button ID="btnSelect" runat="server" Text="Select" OnClick="btnSelect_Click">
-                        </asp:Button></center>
-                    <br />
-                </font>
+                <hr align="left" width="100%" color="red" size="1"></hr>
+                <table border="0" cellpadding="5" cellspacing="5">
+                    <tr>
+                        <td>
+                            <asp:RadioButtonList ID="rblPositions" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rblPositions_SelectedIndexChanged">
+                                <asp:ListItem Value="%G%" Selected="True">Guards</asp:ListItem>
+                                <asp:ListItem Value="%F%">Forwards</asp:ListItem>
+                                <asp:ListItem Value="%C%">Centers</asp:ListItem>
+                            </asp:RadioButtonList>
+                            <br />
+                            <br />
+                            <asp:CheckBox ID="cbShowUnsigned" runat="server" Text="Show Unsigned Players" 
+                                Font-Size="XX-Small" AutoPostBack="True" 
+                                oncheckedchanged="cbShowUnsigned_CheckedChanged" />
+                        </td>
+                        <td>
+                            <asp:ListBox ID="lbPlayers" runat="server" Width="224px" Height="176px" SelectionMode="Multiple">
+                            </asp:ListBox>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" align="right" colspan="2">
+                            <asp:Button ID="btnSelect" runat="server" Text="Submit" OnClick="btnSelect_Click">
+                            </asp:Button>
+                            <p>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>

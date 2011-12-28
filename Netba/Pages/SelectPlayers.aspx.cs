@@ -29,12 +29,14 @@ namespace netba.Pages
 				else if( (TransactionTypes)Session["Mode"] == TransactionTypes.CutPlayers || (TransactionTypes)Session["Mode"] == TransactionTypes.IRPlayers )
 				{
 					rblPositions.Visible = false;
+                    cbShowUnsigned.Visible = false;
 					fillPlayerBoxRoster( (int)Session["TeamId"] );
 				}
 				else if( (TransactionTypes)Session["Mode"] == TransactionTypes.ActivatePlayers )
 				{
 					rblPositions.Visible = false;
-					fillPlayerBoxRoster( (int)Session["TeamId"] );
+                    cbShowUnsigned.Visible = false;
+                    fillPlayerBoxRoster( (int)Session["TeamId"] );
 				}
 			}		
 		}
@@ -61,13 +63,13 @@ namespace netba.Pages
 
 		protected void rblPositions_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			fillPlayerBoxFA( rblPositions.SelectedValue.ToString() );		
+			fillPlayerBoxFA( rblPositions.SelectedValue.ToString(), cbShowUnsigned.Checked );		
 		}
 
-		private void fillPlayerBoxFA( string pos )
+		private void fillPlayerBoxFA( string pos, bool showunsigned = false )
 		{
             DataSet dsPlayers = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-				"spGetFreeAgentsByPosition", pos );		
+				"spGetFreeAgentsByPosition", pos, showunsigned );		
 			lbPlayers.DataSource = dsPlayers;
 			lbPlayers.DataValueField = "PlayerId";
 			lbPlayers.DataTextField = "Player";
@@ -109,6 +111,11 @@ namespace netba.Pages
 				Session["SelectedPlayers"] = x;
 			}
             Response.Redirect("/Pages/TransactionEditor.aspx");
-		}	
+		}
+
+        protected void cbShowUnsigned_CheckedChanged( object sender, EventArgs e )
+        {
+            fillPlayerBoxFA( rblPositions.SelectedValue.ToString(), cbShowUnsigned.Checked );
+        }	
 	}
 }

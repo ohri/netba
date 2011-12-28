@@ -78,10 +78,10 @@ namespace netba.Pages
             Response.Redirect("/Pages/Draft.aspx");
 		}
 
-		private void fillPlayerBox( string pos )
+		private void fillPlayerBox( string pos, bool showunsigned = false )
 		{
             DataSet dsPlayers = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-				"spGetFreeAgentsByPosition", pos );		
+				"spGetFreeAgentsByPosition", pos, showunsigned );		
 			lbPlayers.DataSource = dsPlayers;
 			lbPlayers.DataValueField = "PlayerId";
 			lbPlayers.DataTextField = "Player";
@@ -90,7 +90,7 @@ namespace netba.Pages
 
 		protected void rblPositions_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			fillPlayerBox( rblPositions.SelectedValue.ToString() );
+			fillPlayerBox( rblPositions.SelectedValue.ToString(), cbShowUnsigned.Checked );
 		}
 
 		private void makePick( int PickId, int PlayerId )
@@ -194,6 +194,11 @@ namespace netba.Pages
             }
 
             mailer.sendSynchronousLeagueMail( subject, msgBody, true, Page.User.Identity.Name );
+        }
+
+        protected void cbShowUnsigned_CheckedChanged( object sender, EventArgs e )
+        {
+            fillPlayerBox( rblPositions.SelectedValue.ToString(), cbShowUnsigned.Checked );
         }
 	}
 }

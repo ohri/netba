@@ -76,6 +76,15 @@ namespace netba.Pages {
         protected global::netba.Controls.Alerts Alerts1;
         
         /// <summary>
+        /// TradeBlock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::netba.Controls.TradeBlock TradeBlock;
+        
+        /// <summary>
         /// Footer1 control.
         /// </summary>
         /// <remarks>

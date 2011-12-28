@@ -17,18 +17,13 @@
             </td>
             <td>
                 <br />
-                <p>
-                    &nbsp;</p>
-                <p>
-                    &nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
                 <p>
                     <asp:Label ID="lblPageTitle" runat="server" CssClass="pagetitle">Select Player</asp:Label></p>
-                <hr align="left" width="100%" color="red" size="1">
-                <p>
-                </p>
-                <p>
+                <hr align="left" width="100%" color="red" size="1"></hr>
                     <asp:Panel ID="pnlSelection" runat="server" Height="98px">
-                        <table id="Table2" cellspacing="5" cellpadding="5" border="0">
+                        <table id="Table2" cellspacing="10" cellpadding="10" border="0">
                             <tr>
                                 <td>
                                     <asp:RadioButtonList ID="rblPositions" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rblPositions_SelectedIndexChanged">
@@ -36,9 +31,15 @@
                                         <asp:ListItem Value="%F%">Forwards</asp:ListItem>
                                         <asp:ListItem Value="%C%">Centers</asp:ListItem>
                                     </asp:RadioButtonList>
+                                    <br />
+                                    <br />
+                                    <asp:CheckBox ID="cbShowUnsigned" runat="server" Text="Show Unsigned Players" 
+                                        Font-Size="XX-Small" oncheckedchanged="cbShowUnsigned_CheckedChanged" 
+                                        AutoPostBack="True" />
                                 </td>
                                 <td>
                                     <asp:ListBox ID="lbPlayers" runat="server" Width="248px" Height="160px"></asp:ListBox>
+                                    <br />
                                 </td>
                             </tr>
                             <tr>
@@ -51,7 +52,6 @@
                             </tr>
                         </table>
                     </asp:Panel>
-                </p>
                 <asp:Panel ID="pnlConfirmation" runat="server" Height="44px" Visible="False">
                     <p>
                         &nbsp;</p>

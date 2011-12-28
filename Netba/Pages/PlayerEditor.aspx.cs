@@ -52,7 +52,7 @@ namespace netba.Pages
 
 		protected void ddlPositions_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			FillPlayerListBox( ddlPositions.SelectedValue );
+			FillPlayerListBox( ddlPositions.SelectedValue, cbShowUnsigned.Checked );
 		}
 
 		protected void ButtonEdit_Click(object sender, System.EventArgs e)
@@ -181,10 +181,10 @@ namespace netba.Pages
 			}
 		}
 
-		private void FillPlayerListBox( string Position )
+		private void FillPlayerListBox( string Position, bool ShowUnsigned = false )
 		{
             DataSet dsPlayers = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-				"spGetPlayersByPosition", Position );
+				"spGetPlayersByPosition", Position, ShowUnsigned );
 			lbPlayers.DataSource = dsPlayers;
 			lbPlayers.DataTextField = "player";
 			lbPlayers.DataValueField = "PlayerId";
@@ -197,6 +197,7 @@ namespace netba.Pages
 			lbPlayers.Enabled = !Enabled;
 			ButtonNew.Enabled = !Enabled;
 			ButtonEdit.Enabled = !Enabled;
+            cbShowUnsigned.Enabled = !Enabled;
 
 			tbFirst.Enabled = Enabled;
 			tbLast.Enabled = Enabled;
@@ -208,5 +209,10 @@ namespace netba.Pages
 			ButtonCancel.Enabled = Enabled;
 			ButtonSave.Enabled = Enabled;
 		}
+
+        protected void cbShowUnsigned_CheckedChanged( object sender, EventArgs e )
+        {
+            FillPlayerListBox( ddlPositions.SelectedValue, cbShowUnsigned.Checked );
+        }
 	}
 }

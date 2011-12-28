@@ -38,6 +38,10 @@
                                 <br />
                                 <asp:ListBox ID="lbPlayers" runat="server" Width="232px" Height="256px"></asp:ListBox>
                                 <br />
+                                <asp:CheckBox ID="cbShowUnsigned" Text="Show unsigned players" 
+                                    AutoPostBack="true" runat="server" Font-Size="XX-Small" 
+                                    oncheckedchanged="cbShowUnsigned_CheckedChanged" />
+                                <br />
                                 <br />
                                 <center>
                                     <asp:Button ID="ButtonEdit" runat="server" Text="Edit" OnClick="ButtonEdit_Click">
