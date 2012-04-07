@@ -35,7 +35,7 @@
 
                 <asp:GridView ID="gvRoster" runat="server" CssClass="grid" 
                     AutoGenerateColumns="False" CellPadding="6" CellSpacing="6" 
-                    onrowdatabound="gvRoster_RowDataBound">
+                    onrowdatabound="gvRoster_RowDataBound" DataKeyNames="PlayerId" >
                     <Columns>
                         <asp:HyperLinkField DataNavigateUrlFields="PlayerId" DataNavigateUrlFormatString="DetailedStats.aspx?PlayerId={0}"
                             DataTextField="Player" HeaderText="Name" >
@@ -66,8 +66,7 @@
                             <ItemTemplate>
                                 <asp:CheckBox ID="cbTradeBlock" runat="server" OnCheckedChanged="cbTradeBlock_OnCheckedChanged"
                                     AutoPostBack="true" 
-                                    Checked='<%# Convert.ToBoolean(Eval("IsOnTradeBlock")) %>'
-                                    ToolTip='<%# Convert.ToInt32(Eval("PlayerId")) %>' />
+                                    Checked='<%# Convert.ToBoolean(Eval("IsOnTradeBlock")) %>' />
                                 <asp:LinkButton ID="lbMakeOffer" visible="false" runat="server" PostBackUrl="TradePropose.aspx">Make Offer</asp:LinkButton>
                             </ItemTemplate>                    
                             <ItemStyle HorizontalAlign="Center" />

@@ -79,7 +79,7 @@ namespace netba.Pages
                 GridViewRow row = (GridViewRow)cbTradeBlock.NamingContainer;
 
                 bool status = cbTradeBlock.Checked;
-                int id = int.Parse( cbTradeBlock.ToolTip );
+                int id = int.Parse( gvRoster.DataKeys[row.RowIndex]["PlayerId"].ToString() );
 
                 // now write to the db
                 int dontcare = (int)SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
@@ -91,12 +91,12 @@ namespace netba.Pages
         {
             if( !TeamOwner && e.Row.RowIndex >= 0 )
             {
-                CheckBox cb = (CheckBox)e.Row.Cells[7].FindControl( "cbTradeBlock" );
+                CheckBox cb = (CheckBox)e.Row.FindControl( "cbTradeBlock" );
                 cb.Visible = false;
                 if( cb.Checked )
                 {
-                    LinkButton lb = (LinkButton)e.Row.Cells[7].FindControl( "lbMakeOffer" );
-                    lb.PostBackUrl = "TradePropose.aspx?PlayerId=" + Int32.Parse( cb.ToolTip );
+                    LinkButton lb = (LinkButton)e.Row.FindControl( "lbMakeOffer" );
+                    lb.PostBackUrl = "TradePropose.aspx?PlayerId=" + gvRoster.DataKeys[e.Row.RowIndex]["PlayerId"];
                     lb.Visible = true;
                 }
             }

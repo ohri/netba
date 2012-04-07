@@ -7,7 +7,8 @@
         <Columns>
             <asp:BoundColumn DataField="TeamAbbrev" HeaderText="Team"></asp:BoundColumn>
             <asp:BoundColumn DataField="Player" HeaderText="Player"></asp:BoundColumn>
-            <asp:BoundColumn DataField="NetPPG" HeaderText="Points"></asp:BoundColumn>
+            <asp:BoundColumn DataField="NetPPG" HeaderText="Points" 
+                DataFormatString="{0:N1}"></asp:BoundColumn>
             <asp:HyperLinkColumn DataNavigateUrlField="PlayerId" 
                 DataNavigateUrlFormatString="/Pages/TradePropose.aspx?PlayerId={0}" 
                 Text="Trade"></asp:HyperLinkColumn>
