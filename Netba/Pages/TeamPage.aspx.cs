@@ -15,6 +15,7 @@ namespace netba.Pages
     public partial class TeamPage : System.Web.UI.Page
     {
         private bool TeamOwner = false;
+        private bool ProtectedAvailable = false;
 
         protected void Page_Load( object sender, EventArgs e )
         {
@@ -25,12 +26,19 @@ namespace netba.Pages
                 TeamOwner = true;
             }
 
+            ProtectedAvailable = DBUtilities.ProtectedListsAvailable();
+
             if( !IsPostBack )
             {
                 DataSet roster = SqlHelper.ExecuteDataset( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
                     "spGetRoster", Request.QueryString["TeamId"] );
                 gvRoster.DataSource = roster;
                 gvRoster.DataBind();
+                if( !TeamOwner || !ProtectedAvailable )
+                {
+                    // it pains me that i have to use a numeric index :-(
+                    gvRoster.Columns[8].Visible = false;
+                }
 
                 hlEmail.NavigateUrl = "mailto:" + owners.Tables[0].Rows[0]["EmailAddress"];
                 hlEmail.Text = owners.Tables[0].Rows[0]["FirstName"] + " " + owners.Tables[0].Rows[0]["LastName"];
@@ -87,6 +95,22 @@ namespace netba.Pages
             }
         }
 
+        protected void cbProtected_OnCheckedChanged( object sender, EventArgs e )
+        {
+            if( TeamOwner )
+            {
+                CheckBox cbProtected = (CheckBox)sender;
+                GridViewRow row = (GridViewRow)cbProtected.NamingContainer;
+
+                bool status = cbProtected.Checked;
+                int id = int.Parse( gvRoster.DataKeys[row.RowIndex]["PlayerId"].ToString() );
+
+                // now write to the db
+                int dontcare = (int)SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetProtectedStatus", id, status );
+            }
+        }
+
         protected void gvRoster_RowDataBound( object sender, GridViewRowEventArgs e )
         {
             if( !TeamOwner && e.Row.RowIndex >= 0 )
@@ -100,6 +124,17 @@ namespace netba.Pages
                     lb.Visible = true;
                 }
             }
+
+            if( !TeamOwner && e.Row.RowIndex >= 0 && ProtectedAvailable )
+            {
+                CheckBox cb = (CheckBox)e.Row.FindControl( "cbProtected" );
+                if( cb.Checked )
+                {
+                    Label l = (Label)e.Row.FindControl( "lblProtected" );
+                    l.Visible = true;
+                }
+            }
+
         }
     }
 }

@@ -59,15 +59,28 @@
                         <asp:BoundField DataField="LastGame" HeaderText="Last Game">
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField HeaderText="Status" DataField="OnIR">
-                        <ItemStyle Font-Bold="True" ForeColor="Red" HorizontalAlign="Center" />
-                        </asp:BoundField>
+                        <asp:TemplateField HeaderText="Status" Visible="true">
+                            <ItemTemplate>
+                                <asp:Label ID="lblIR" Font-Bold="True" ForeColor="Red" Text='<%# Bind("OnIR") %>'  
+                                    runat="server" />
+                                <asp:Label ID="lblProtected" Visible="false" Text="&nbsp;&nbsp;Protected&nbsp;" ForeColor="Black" 
+                                    Font-Bold="true" runat="server"  />
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="On Trade Block?">
                             <ItemTemplate>
                                 <asp:CheckBox ID="cbTradeBlock" runat="server" OnCheckedChanged="cbTradeBlock_OnCheckedChanged"
                                     AutoPostBack="true" 
                                     Checked='<%# Convert.ToBoolean(Eval("IsOnTradeBlock")) %>' />
                                 <asp:LinkButton ID="lbMakeOffer" visible="false" runat="server" PostBackUrl="TradePropose.aspx">Make Offer</asp:LinkButton>
+                            </ItemTemplate>                    
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Protected?" Visible="true" >
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbProtected" runat="server" OnCheckedChanged="cbProtected_OnCheckedChanged"
+                                    AutoPostBack="true" Checked='<%# Convert.ToBoolean(Eval("IsProtected")) %>' />
                             </ItemTemplate>                    
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>

@@ -75,5 +75,11 @@ namespace netba
 				"spIsDraftOpen" );
 		}
 
+        public static bool ProtectedListsAvailable()
+        {
+            return (bool)SqlHelper.ExecuteScalar( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spCanSetProtectedLists" );
+        }
+
 	}
 }
