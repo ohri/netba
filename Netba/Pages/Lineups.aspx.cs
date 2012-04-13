@@ -123,7 +123,7 @@ namespace netba.Pages
 			}
 			else
 			{
-				litHiddenPlaceholder.Text = @"<input type=""hidden"" name=""hiddenSPG"" value="""
+                litHiddenPlaceholder.Text = @"<input type=""hidden"" id=""hiddenSPG"" name=""hiddenSPG"" value="""
 					+ lineup.Tables[0].Rows[0]["PlayerId"].ToString()
                     + @""" /><input type=""hidden"" name=""hiddenSSG"" id=""hiddenSSG"" value="""
 					+ lineup.Tables[0].Rows[1]["PlayerId"].ToString()
