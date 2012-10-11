@@ -26,7 +26,7 @@ namespace netba.Pages
                     //					{
                     ds = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
                         "spGetPassword", TextUsername.Text);
-                    if (SaltedHash.ValidatePassword(TextPassword.Text, (string)ds.Tables[0].Rows[0][0]))
+                    if (ds.Tables[0].Rows.Count > 0 && SaltedHash.ValidatePassword(TextPassword.Text, (string)ds.Tables[0].Rows[0][0]))
                     {
                         Log.AddLogEntry(Logger.LogEntryTypes.Login, TextUsername.Text, "User successfully logged in");
                         FormsAuthentication.RedirectFromLoginPage(TextUsername.Text, false);
