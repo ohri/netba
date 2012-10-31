@@ -189,36 +189,36 @@ namespace netba.Pages
 			try
 			{
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenSPG"], "S", Session["TeamId"], Session["LineupGameId"] );
+					"spSetPlayerLineupStatus", Request.Params["hiddenSPG"], "S", Session["TeamId"], Session["LineupGameId"], 1 );
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenSSG"], "S", Session["TeamId"], Session["LineupGameId"] );
+					"spSetPlayerLineupStatus", Request.Params["hiddenSSG"], "S", Session["TeamId"], Session["LineupGameId"], 2 );
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenSSF"], "S", Session["TeamId"], Session["LineupGameId"] );
+					"spSetPlayerLineupStatus", Request.Params["hiddenSSF"], "S", Session["TeamId"], Session["LineupGameId"], 3 );
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenSPF"], "S", Session["TeamId"], Session["LineupGameId"] );
+					"spSetPlayerLineupStatus", Request.Params["hiddenSPF"], "S", Session["TeamId"], Session["LineupGameId"], 4 );
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenSC"], "S", Session["TeamId"], Session["LineupGameId"] );
+					"spSetPlayerLineupStatus", Request.Params["hiddenSC"], "S", Session["TeamId"], Session["LineupGameId"], 5 );
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenBPG"], "B", Session["TeamId"], Session["LineupGameId"] );
+					"spSetPlayerLineupStatus", Request.Params["hiddenBPG"], "B", Session["TeamId"], Session["LineupGameId"], 6 );
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenBSG"], "B", Session["TeamId"], Session["LineupGameId"] );
+					"spSetPlayerLineupStatus", Request.Params["hiddenBSG"], "B", Session["TeamId"], Session["LineupGameId"], 7 );
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenBSF"], "B", Session["TeamId"], Session["LineupGameId"] );
+					"spSetPlayerLineupStatus", Request.Params["hiddenBSF"], "B", Session["TeamId"], Session["LineupGameId"], 8 );
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenBPF"], "B", Session["TeamId"], Session["LineupGameId"] );
+					"spSetPlayerLineupStatus", Request.Params["hiddenBPF"], "B", Session["TeamId"], Session["LineupGameId"], 9 );
                 SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenBC"], "B", Session["TeamId"], Session["LineupGameId"] );
+					"spSetPlayerLineupStatus", Request.Params["hiddenBC"], "B", Session["TeamId"], Session["LineupGameId"], 10 );
 
 				// it's possible someone could be short a garbage player
 				if( Request.Params["hiddenG1"].Length != 0 )
 				{
                     SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-						"spSetPlayerLineupStatus", Request.Params["hiddenG1"], "G", Session["TeamId"], Session["LineupGameId"] );
+						"spSetPlayerLineupStatus", Request.Params["hiddenG1"], "G", Session["TeamId"], Session["LineupGameId"], 11 );
 				}
 				if( Request.Params["hiddenG2"].Length != 0 )
 				{
                     SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-						"spSetPlayerLineupStatus", Request.Params["hiddenG2"], "G", Session["TeamId"], Session["LineupGameId"] );
+						"spSetPlayerLineupStatus", Request.Params["hiddenG2"], "G", Session["TeamId"], Session["LineupGameId"], 12 );
 				}
                 
             }
@@ -295,6 +295,23 @@ namespace netba.Pages
                 MsgBody,
                 true,
                 Page.User.Identity.Name );
+        }
+
+        protected void ResetButton_Click(object sender, EventArgs e)
+        {
+            litHiddenPlaceholder.Text = @"<input type=""hidden"" name=""hiddenSPG"" id=""hiddenSPG"" /> <input type=""hidden"" name=""hiddenSSG"" id=""hiddenSSG"" /><input type=""hidden"" name=""hiddenSSF"" id=""hiddenSSF"" /> <input type=""hidden"" name=""hiddenSPF"" id=""hiddenSPF"" /><input type=""hidden"" name=""hiddenSC"" id=""hiddenSC"" /> <input type=""hidden"" name=""hiddenBPG"" id=""hiddenBPG"" /><input type=""hidden"" name=""hiddenBSG"" id=""hiddenBSG"" /> <input type=""hidden"" name=""hiddenBSF"" id=""hiddenBSF"" /><input type=""hidden"" name=""hiddenBPF"" id=""hiddenBPF"" /> <input type=""hidden"" name=""hiddenBC"" id=""hiddenBC"" /><input type=""hidden"" name=""hiddenG1"" id=""hiddenG1"" /> <input type=""hidden"" name=""hiddenG2"" id=""hiddenG2"" />";
+            lblPG.Text = "Pick 'n Click";
+            lblSG.Text = "Pick 'n Click";
+            lblSF.Text = "Pick 'n Click";
+            lblPF.Text = "Pick 'n Click";
+            lblC.Text = "Pick 'n Click";
+            lblBackupPG.Text = "Pick 'n Click";
+            lblBackupSG.Text = "Pick 'n Click";
+            lblBackupSF.Text = "Pick 'n Click";
+            lblBackupPF.Text = "Pick 'n Click";
+            lblBackupC.Text = "Pick 'n Click";
+            lblGarbage1.Text = "Pick 'n Click";
+            lblGarbage2.Text = "Pick 'n Click";
         }
 	}
 }

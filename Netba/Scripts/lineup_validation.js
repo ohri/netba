@@ -1,7 +1,9 @@
 ﻿function get_player_position( player_text )
 {
-	var pos = player_text.split( " " );
-	return pos[pos.length - 3];
+    // in some browsers, there is trailing white space, which breaks the split
+    var trimmed = $.trim( player_text );
+	var pos = trimmed.split( " " );
+	return pos[pos.length - 2];
 }
 
 function lineup_validate( pos_text, lineup_spot )

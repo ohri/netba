@@ -50,7 +50,12 @@ namespace StatGrabber
         public ArrayList GetGamePerformances( string url )
         {
             Regex GetTeams = new Regex( @"</a>(.*)</th></tr><tr align=.right.>" );
-            Regex GetPlayerStatRows = new Regex( @"<td style=.text-align:left;. nowrap>(.*)?</td></tr>" );
+            Regex GetPlayerStatRows = new Regex( @"<td style=.text-align:left. nowrap>(.*)?</td></tr>" );
+            /*
+            <td style="text-align:left" nowrap><a href="http://espn.go.com/nba/player/_/id/4270/trevor-booker">Trevor 
+            Booker</a>, PF</td><td>17</td><td>2-9</td><td>0-1</td><td>0-0</td><td align=right>1</td><td align=right>0</td>
+            <td>1</td><td>1</td><td>1</td><td>1</td><td>4</td><td>4</td><td>-15</td><td>4</td></tr>
+            */
             Regex SplitStatRows = new Regex( @"</td><td.*?>" );
             Regex ExtractPlayerName = new Regex( @"^(?:.+?>)?([\w\.\'-]+)\s+?([\w\.\'-]+(?:\s[\w.]+)?)(?:.*?)?$" );
             Regex ExtractThrees = new Regex( @"([0-9]*)\-([0-9]*)" );

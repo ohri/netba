@@ -50,7 +50,7 @@
             {
                 $( "#ButtonSubmitLineup" ).attr( "disabled", true );
             }
-      }
+        }
 
       $( document ).ready( function ()
       {
@@ -86,6 +86,10 @@
                                     <td>
                                         <p><strong><u>Roster</u></strong></p>
                                         <p><asp:ListBox ID="lbRoster" runat="server" SelectionMode="Single" Rows="12"></asp:ListBox></p>
+                                        <p style="text-align: center">
+                                            <asp:Button ID="ResetButton" runat="server" onclick="ResetButton_Click" 
+                                                Text="Reset" UseSubmitBehavior="False" />
+                                        </p>
                                     </td>
                                     <td>
                                         <p><strong><u>Starters</u></strong></p>
