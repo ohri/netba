@@ -59,7 +59,9 @@ namespace StatGrabber
             Regex SplitStatRows = new Regex( @"</td><td.*?>" );
             Regex ExtractPlayerName = new Regex( @"^(?:.+?>)?([\w\.\'-]+)\s+?([\w\.\'-]+(?:\s[\w.]+)?)(?:.*?)?$" );
             Regex ExtractThrees = new Regex( @"([0-9]*)\-([0-9]*)" );
-            Regex NeneException = new Regex( @".*Nene.*", RegexOptions.IgnoreCase );
+//            Regex ESPNId = new Regex(@".+?\/([0-9]+)\/.+?");
+            Regex ESPNIdReg = new Regex(@"([0-9]+)");
+            Regex NeneException = new Regex(@".*Nene.*", RegexOptions.IgnoreCase);
             string Page = WebPageToString( url );
 
             MatchCollection TeamMatches = GetTeams.Matches( Page );
@@ -91,6 +93,17 @@ namespace StatGrabber
 
                 PlayerPerformance p = new PlayerPerformance();
                 MatchCollection PlayerName = ExtractPlayerName.Matches( Cells[0] );
+                MatchCollection ESPNIdMatches = ESPNIdReg.Matches( Cells[0] );
+                try
+                {
+                    p.ESPNId = Int32.Parse(ESPNIdMatches[0].Groups[0].Value);
+                }
+                catch
+                {
+                    // we really don't care if it doesn't work, just keep trucking
+                    int x = 1;
+                }
+
                 if( PlayerName.Count < 1 )
                 {
                     // the nene exception
@@ -195,7 +208,7 @@ namespace StatGrabber
                         when, p.FirstName, p.LastName, p.TeamName, p.Minutes, p.Assists, p.Blocks,
                         p.DefensiveRebounds, p.Fouls, p.FTAttempts, p.FTsMade, p.OffensiveRebounds,
                         p.PlusMinus, p.ShotAttempts, p.ShotsMade, p.Steals, p.ThreeAttempts,
-                        p.ThreesMade, p.Turnovers );
+                        p.ThreesMade, p.Turnovers, p.ESPNId );
                     int x = (int)db.ExecuteScalar( cmd, trans );
                     if( x != 0 )
                     {

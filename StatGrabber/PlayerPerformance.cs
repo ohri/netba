@@ -25,6 +25,6 @@ namespace StatGrabber
         public int Fouls = 0;
         public int Turnovers = 0;
         public int PlusMinus = 0;
-
+        public int ESPNId = 0;
     };
 }
