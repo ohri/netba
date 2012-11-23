@@ -61,7 +61,7 @@ namespace StatGrabber
             Regex ExtractThrees = new Regex( @"([0-9]*)\-([0-9]*)" );
 //            Regex ESPNId = new Regex(@".+?\/([0-9]+)\/.+?");
             Regex ESPNIdReg = new Regex(@"([0-9]+)");
-            Regex NeneException = new Regex(@".*Nene.*", RegexOptions.IgnoreCase);
+            Regex NeneException = new Regex(@".*Nen.*", RegexOptions.IgnoreCase);
             string Page = WebPageToString( url );
 
             MatchCollection TeamMatches = GetTeams.Matches( Page );
