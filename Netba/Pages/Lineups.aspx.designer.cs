@@ -85,6 +85,15 @@ namespace netba.Pages {
         protected global::System.Web.UI.WebControls.Button ResetButton;
         
         /// <summary>
+        /// CopyButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CopyButton;
+        
+        /// <summary>
         /// lblPG control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,15 @@ namespace netba.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPG;
+        
+        /// <summary>
+        /// hiddenSPG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenSPG;
         
         /// <summary>
         /// lblSG control.
@@ -103,6 +121,15 @@ namespace netba.Pages {
         protected global::System.Web.UI.WebControls.Label lblSG;
         
         /// <summary>
+        /// hiddenSSG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenSSG;
+        
+        /// <summary>
         /// lblSF control.
         /// </summary>
         /// <remarks>
@@ -110,6 +137,15 @@ namespace netba.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSF;
+        
+        /// <summary>
+        /// hiddenSSF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenSSF;
         
         /// <summary>
         /// lblPF control.
@@ -121,6 +157,15 @@ namespace netba.Pages {
         protected global::System.Web.UI.WebControls.Label lblPF;
         
         /// <summary>
+        /// hiddenSPF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenSPF;
+        
+        /// <summary>
         /// lblC control.
         /// </summary>
         /// <remarks>
@@ -128,6 +173,15 @@ namespace netba.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblC;
+        
+        /// <summary>
+        /// hiddenSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenSC;
         
         /// <summary>
         /// lblBackupPG control.
@@ -139,6 +193,15 @@ namespace netba.Pages {
         protected global::System.Web.UI.WebControls.Label lblBackupPG;
         
         /// <summary>
+        /// hiddenBPG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenBPG;
+        
+        /// <summary>
         /// lblBackupSG control.
         /// </summary>
         /// <remarks>
@@ -146,6 +209,15 @@ namespace netba.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblBackupSG;
+        
+        /// <summary>
+        /// hiddenBSG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenBSG;
         
         /// <summary>
         /// lblBackupSF control.
@@ -157,6 +229,15 @@ namespace netba.Pages {
         protected global::System.Web.UI.WebControls.Label lblBackupSF;
         
         /// <summary>
+        /// hiddenBSF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenBSF;
+        
+        /// <summary>
         /// lblBackupPF control.
         /// </summary>
         /// <remarks>
@@ -164,6 +245,15 @@ namespace netba.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblBackupPF;
+        
+        /// <summary>
+        /// hiddenBPF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenBPF;
         
         /// <summary>
         /// lblBackupC control.
@@ -175,6 +265,15 @@ namespace netba.Pages {
         protected global::System.Web.UI.WebControls.Label lblBackupC;
         
         /// <summary>
+        /// hiddenBC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenBC;
+        
+        /// <summary>
         /// lblGarbage1 control.
         /// </summary>
         /// <remarks>
@@ -184,6 +283,15 @@ namespace netba.Pages {
         protected global::System.Web.UI.WebControls.Label lblGarbage1;
         
         /// <summary>
+        /// hiddenG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenG1;
+        
+        /// <summary>
         /// lblGarbage2 control.
         /// </summary>
         /// <remarks>
@@ -191,6 +299,15 @@ namespace netba.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGarbage2;
+        
+        /// <summary>
+        /// hiddenG2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenG2;
         
         /// <summary>
         /// tbComment control.
@@ -209,15 +326,6 @@ namespace netba.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonSubmitLineup;
-        
-        /// <summary>
-        /// litHiddenPlaceholder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litHiddenPlaceholder;
         
         /// <summary>
         /// TeamWeekSelection control.

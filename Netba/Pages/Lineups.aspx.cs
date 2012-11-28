@@ -16,9 +16,30 @@ namespace netba.Pages
 {
 	public partial class Lineups : System.Web.UI.Page
 	{
-	
+
+        private ArrayList PlayerLabels;
+        private ArrayList PlayerHiddens;
+
 		protected void Page_Load(object sender, System.EventArgs e)
 		{
+            if( PlayerLabels == null )
+            {
+                PlayerLabels = PopulatePlayerLabels();
+            }
+            if( PlayerHiddens == null )
+            {
+                PlayerHiddens = PopulatePlayerHiddens();
+            }
+
+            if( DBUtilities.GetCurrentWeek().Equals( "1" ) )
+            {
+                CopyButton.Enabled = false;
+            }
+            else
+            {
+                CopyButton.Enabled = true;
+            }
+
 			if( !IsPostBack )
 			{
                 DataSet teams = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
@@ -67,6 +88,42 @@ namespace netba.Pages
 				lbTeams.SelectedIndex = i;
 			}
 		}
+
+        private ArrayList PopulatePlayerHiddens()
+        {
+            ArrayList hiddens = new ArrayList();
+            hiddens.Add( hiddenSPG );
+            hiddens.Add( hiddenSSG );
+            hiddens.Add( hiddenSSF );
+            hiddens.Add( hiddenSPF );
+            hiddens.Add( hiddenSC );
+            hiddens.Add( hiddenBPG );
+            hiddens.Add( hiddenBSG );
+            hiddens.Add( hiddenBSF );
+            hiddens.Add( hiddenBPF );
+            hiddens.Add( hiddenBC );
+            hiddens.Add( hiddenG1 );
+            hiddens.Add( hiddenG2 );
+            return hiddens;
+        }
+
+        private ArrayList PopulatePlayerLabels()
+        {
+            ArrayList labels = new ArrayList();
+            labels.Add( lblPG );
+            labels.Add( lblSG );
+            labels.Add( lblSF );
+            labels.Add( lblPF );
+            labels.Add( lblC );
+            labels.Add( lblBackupPG );
+            labels.Add( lblBackupSG );
+            labels.Add( lblBackupSF );
+            labels.Add( lblBackupPF );
+            labels.Add( lblBackupC );
+            labels.Add( lblGarbage1 );
+            labels.Add( lblGarbage2 );
+            return labels;
+        }
 
 		#region Web Form Designer generated code
 		override protected void OnInit(EventArgs e)
@@ -117,50 +174,17 @@ namespace netba.Pages
 			lbRoster.DataBind();
 
 			// if there was an existing lineup, prepopulate!
-			if( lineup.Tables[0].Rows[0]["LineupId"] == DBNull.Value )
+			if( lineup.Tables[0].Rows[0]["LineupId"] != DBNull.Value )
 			{
-                litHiddenPlaceholder.Text = @"<input type=""hidden"" name=""hiddenSPG"" id=""hiddenSPG"" /> <input type=""hidden"" name=""hiddenSSG"" id=""hiddenSSG"" /><input type=""hidden"" name=""hiddenSSF"" id=""hiddenSSF"" /> <input type=""hidden"" name=""hiddenSPF"" id=""hiddenSPF"" /><input type=""hidden"" name=""hiddenSC"" id=""hiddenSC"" /> <input type=""hidden"" name=""hiddenBPG"" id=""hiddenBPG"" /><input type=""hidden"" name=""hiddenBSG"" id=""hiddenBSG"" /> <input type=""hidden"" name=""hiddenBSF"" id=""hiddenBSF"" /><input type=""hidden"" name=""hiddenBPF"" id=""hiddenBPF"" /> <input type=""hidden"" name=""hiddenBC"" id=""hiddenBC"" /><input type=""hidden"" name=""hiddenG1"" id=""hiddenG1"" /> <input type=""hidden"" name=""hiddenG2"" id=""hiddenG2"" />";
-			}
-			else
-			{
-                litHiddenPlaceholder.Text = @"<input type=""hidden"" id=""hiddenSPG"" name=""hiddenSPG"" value="""
-					+ lineup.Tables[0].Rows[0]["PlayerId"].ToString()
-                    + @""" /><input type=""hidden"" name=""hiddenSSG"" id=""hiddenSSG"" value="""
-					+ lineup.Tables[0].Rows[1]["PlayerId"].ToString()
-                    + @""" /><input type=""hidden"" name=""hiddenSSF"" id=""hiddenSSF"" value="""
-					+ lineup.Tables[0].Rows[2]["PlayerId"].ToString()
-                    + @""" /> <input type=""hidden"" name=""hiddenSPF"" id=""hiddenSPF"" value="""
-					+ lineup.Tables[0].Rows[3]["PlayerId"].ToString()
-                    + @""" /><input type=""hidden"" name=""hiddenSC"" id=""hiddenSC"" value="""
-					+ lineup.Tables[0].Rows[4]["PlayerId"].ToString()
-                    + @""" /> <input type=""hidden"" name=""hiddenBPG"" id=""hiddenBPG"" value="""
-					+ lineup.Tables[0].Rows[5]["PlayerId"].ToString()
-                    + @""" /><input type=""hidden"" name=""hiddenBSG"" id=""hiddenBSG"" value="""
-					+ lineup.Tables[0].Rows[6]["PlayerId"].ToString()
-                    + @""" /> <input type=""hidden"" name=""hiddenBSF"" id=""hiddenBSF"" value="""
-					+ lineup.Tables[0].Rows[7]["PlayerId"].ToString()
-                    + @""" /><input type=""hidden"" name=""hiddenBPF"" id=""hiddenBPF"" value="""
-					+ lineup.Tables[0].Rows[8]["PlayerId"].ToString()
-                    + @""" /> <input type=""hidden"" name=""hiddenBC"" id=""hiddenBC"" value="""
-					+ lineup.Tables[0].Rows[9]["PlayerId"].ToString()
-                    + @""" /><input type=""hidden"" name=""hiddenG1"" id=""hiddenG1"" value="""
-					+ lineup.Tables[0].Rows[10]["PlayerId"].ToString()
-                    + @""" /> <input type=""hidden"" name=""hiddenG2"" id=""hiddenG2"" value="""
-					+ lineup.Tables[0].Rows[11]["PlayerId"].ToString()
-					+ @""" />";
+                for( int i = 0; i < 12; i++ )
+                {
+                    ( (HiddenField)PlayerHiddens[i] ).Value = lineup.Tables[0].Rows[i]["PlayerId"].ToString();
+                }
 
-				lblPG.Text = lineup.Tables[0].Rows[0]["player"].ToString();
-				lblSG.Text = lineup.Tables[0].Rows[1]["player"].ToString();
-				lblSF.Text = lineup.Tables[0].Rows[2]["player"].ToString();
-				lblPF.Text = lineup.Tables[0].Rows[3]["player"].ToString();
-				lblC.Text = lineup.Tables[0].Rows[4]["player"].ToString();
-				lblBackupPG.Text = lineup.Tables[0].Rows[5]["player"].ToString();
-				lblBackupSG.Text = lineup.Tables[0].Rows[6]["player"].ToString();
-				lblBackupSF.Text = lineup.Tables[0].Rows[7]["player"].ToString();
-				lblBackupPF.Text = lineup.Tables[0].Rows[8]["player"].ToString();
-				lblBackupC.Text = lineup.Tables[0].Rows[9]["player"].ToString();
-				lblGarbage1.Text = lineup.Tables[0].Rows[10]["player"].ToString();
-				lblGarbage2.Text = lineup.Tables[0].Rows[11]["player"].ToString();
+                for( int i = 0; i < 12; i++ )
+                {
+                   ((Label)PlayerLabels[i]).Text = lineup.Tables[0].Rows[i]["player"].ToString();
+                }
 			}
 		}
 
@@ -188,37 +212,37 @@ namespace netba.Pages
             // write each of the new lineup items
 			try
 			{
-                SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenSPG"], "S", Session["TeamId"], Session["LineupGameId"], 1 );
-                SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenSSG"], "S", Session["TeamId"], Session["LineupGameId"], 2 );
-                SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenSSF"], "S", Session["TeamId"], Session["LineupGameId"], 3 );
-                SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenSPF"], "S", Session["TeamId"], Session["LineupGameId"], 4 );
-                SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenSC"], "S", Session["TeamId"], Session["LineupGameId"], 5 );
-                SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenBPG"], "B", Session["TeamId"], Session["LineupGameId"], 6 );
-                SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenBSG"], "B", Session["TeamId"], Session["LineupGameId"], 7 );
-                SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenBSF"], "B", Session["TeamId"], Session["LineupGameId"], 8 );
-                SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenBPF"], "B", Session["TeamId"], Session["LineupGameId"], 9 );
-                SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-					"spSetPlayerLineupStatus", Request.Params["hiddenBC"], "B", Session["TeamId"], Session["LineupGameId"], 10 );
-
-				// it's possible someone could be short a garbage player
-				if( Request.Params["hiddenG1"].Length != 0 )
+                SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetPlayerLineupStatus", hiddenSPG.Value, "S", Session["TeamId"], Session["LineupGameId"], 1 );
+                SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetPlayerLineupStatus", hiddenSSG.Value, "S", Session["TeamId"], Session["LineupGameId"], 2 );
+                SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetPlayerLineupStatus", hiddenSSF.Value, "S", Session["TeamId"], Session["LineupGameId"], 3 );
+                SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetPlayerLineupStatus", hiddenSPF.Value, "S", Session["TeamId"], Session["LineupGameId"], 4 );
+                SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetPlayerLineupStatus", hiddenSC.Value, "S", Session["TeamId"], Session["LineupGameId"], 5 );
+                SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetPlayerLineupStatus", hiddenBPG.Value, "B", Session["TeamId"], Session["LineupGameId"], 6 );
+                SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetPlayerLineupStatus", hiddenBSG.Value, "B", Session["TeamId"], Session["LineupGameId"], 7 );
+                SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetPlayerLineupStatus", hiddenBSF.Value, "B", Session["TeamId"], Session["LineupGameId"], 8 );
+                SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetPlayerLineupStatus", hiddenBPF.Value, "B", Session["TeamId"], Session["LineupGameId"], 9 );
+                SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                    "spSetPlayerLineupStatus", hiddenBC.Value, "B", Session["TeamId"], Session["LineupGameId"], 10 );
+                
+                // it's possible someone could be short a garbage player
+				if( hiddenG1.Value.Length != 0 )
 				{
                     SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-						"spSetPlayerLineupStatus", Request.Params["hiddenG1"], "G", Session["TeamId"], Session["LineupGameId"], 11 );
+                        "spSetPlayerLineupStatus", hiddenG1.Value, "G", Session["TeamId"], Session["LineupGameId"], 11 );
 				}
-				if( Request.Params["hiddenG2"].Length != 0 )
+                if( hiddenG2.Value.Length != 0 )
 				{
                     SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-						"spSetPlayerLineupStatus", Request.Params["hiddenG2"], "G", Session["TeamId"], Session["LineupGameId"], 12 );
+                        "spSetPlayerLineupStatus", hiddenG2.Value, "G", Session["TeamId"], Session["LineupGameId"], 12 );
 				}
                 
             }
@@ -299,19 +323,36 @@ namespace netba.Pages
 
         protected void ResetButton_Click(object sender, EventArgs e)
         {
-            litHiddenPlaceholder.Text = @"<input type=""hidden"" name=""hiddenSPG"" id=""hiddenSPG"" /> <input type=""hidden"" name=""hiddenSSG"" id=""hiddenSSG"" /><input type=""hidden"" name=""hiddenSSF"" id=""hiddenSSF"" /> <input type=""hidden"" name=""hiddenSPF"" id=""hiddenSPF"" /><input type=""hidden"" name=""hiddenSC"" id=""hiddenSC"" /> <input type=""hidden"" name=""hiddenBPG"" id=""hiddenBPG"" /><input type=""hidden"" name=""hiddenBSG"" id=""hiddenBSG"" /> <input type=""hidden"" name=""hiddenBSF"" id=""hiddenBSF"" /><input type=""hidden"" name=""hiddenBPF"" id=""hiddenBPF"" /> <input type=""hidden"" name=""hiddenBC"" id=""hiddenBC"" /><input type=""hidden"" name=""hiddenG1"" id=""hiddenG1"" /> <input type=""hidden"" name=""hiddenG2"" id=""hiddenG2"" />";
-            lblPG.Text = "Pick 'n Click";
-            lblSG.Text = "Pick 'n Click";
-            lblSF.Text = "Pick 'n Click";
-            lblPF.Text = "Pick 'n Click";
-            lblC.Text = "Pick 'n Click";
-            lblBackupPG.Text = "Pick 'n Click";
-            lblBackupSG.Text = "Pick 'n Click";
-            lblBackupSF.Text = "Pick 'n Click";
-            lblBackupPF.Text = "Pick 'n Click";
-            lblBackupC.Text = "Pick 'n Click";
-            lblGarbage1.Text = "Pick 'n Click";
-            lblGarbage2.Text = "Pick 'n Click";
+            ResetFields();
+        }
+
+        private void ResetFields()
+        {
+            for( int i = 0; i < 12; i++ )
+            {
+                ( (HiddenField)PlayerHiddens[i] ).Value = "";
+            } 
+            
+            for( int i = 0; i < 12; i++ )
+            {
+                ( (Label)PlayerLabels[i] ).Text = "Pick 'n Click";
+            }
+        }
+
+        protected void CopyButton_Click(object sender, EventArgs e)
+        {
+            // get last weeks starters who are still on the team and active
+            DataSet lineup = SqlHelper.ExecuteDataset( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spGetTeamLastWeekLineup", lbTeams.SelectedValue );
+
+            ResetFields();
+
+            // loop through all returned info
+            foreach( DataRow r in lineup.Tables[0].Rows )
+            {
+                ((Label)PlayerLabels[ Int32.Parse( r["LineupPosition"].ToString() ) - 1 ]).Text  = r["player"].ToString();
+                ((HiddenField)PlayerHiddens[ Int32.Parse( r["LineupPosition"].ToString() ) - 1 ]).Value = r["PlayerId"].ToString();
+            }
         }
 	}
 }

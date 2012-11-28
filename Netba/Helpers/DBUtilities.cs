@@ -81,5 +81,11 @@ namespace netba
                 "spCanSetProtectedLists" );
         }
 
+        public static string GetCurrentWeek()
+        {
+            return SqlHelper.ExecuteScalar( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spGetCurrentWeek" ).ToString();
+        }
+
 	}
 }

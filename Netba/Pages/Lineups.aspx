@@ -88,7 +88,11 @@
                                         <p><asp:ListBox ID="lbRoster" runat="server" SelectionMode="Single" Rows="12"></asp:ListBox></p>
                                         <p style="text-align: center">
                                             <asp:Button ID="ResetButton" runat="server" onclick="ResetButton_Click" 
-                                                Text="Reset" UseSubmitBehavior="False" />
+                                                Text="Reset" UseSubmitBehavior="False" Width="90px" />
+                                        </p>
+                                        <p style="text-align: center">
+                                            <asp:Button ID="CopyButton" runat="server" onclick="CopyButton_Click" 
+                                                Text="Copy Last" UseSubmitBehavior="False" Width="90px" />
                                         </p>
                                     </td>
                                     <td>
@@ -106,6 +110,7 @@
                                                      enable_submit();
                                                      '>
                                             Pick 'n Click</asp:Label><br />
+                                        <asp:HiddenField ID="hiddenSPG" runat="server" />
                                         <p id="SPG" class="lineup_validation_error"></p>
                                         <br />
                                         <strong>SG</strong>:
@@ -121,6 +126,7 @@
                                                      enable_submit();
                                                      '>
                                             Pick 'n Click</asp:Label><br />
+                                        <asp:HiddenField ID="hiddenSSG" runat="server" />
                                         <p id="SSG" class="lineup_validation_error"></p>
                                         <br />
                                         <strong>SF</strong>:
@@ -136,6 +142,7 @@
                                                      enable_submit();
                                                      '>
                                             Pick 'n Click</asp:Label><br />
+                                        <asp:HiddenField ID="hiddenSSF" runat="server" />
                                         <p id="SSF" class="lineup_validation_error"></p>
                                         <br />
                                         <strong>PF</strong>:
@@ -151,6 +158,7 @@
                                                      enable_submit();
                                                      '>
                                             Pick 'n Click</asp:Label><br />
+                                        <asp:HiddenField ID="hiddenSPF" runat="server" />
                                         <p id="SPF" class="lineup_validation_error"></p>
                                         <br />
                                         <strong>C&nbsp; </strong>:
@@ -167,6 +175,7 @@
                                                      '>
                                             Pick 'n Click</asp:Label>
                                         <p id="SC" class="lineup_validation_error"></p>
+                                        <asp:HiddenField ID="hiddenSC" runat="server" />
                                     </td>
                                     <td>
                                         <p><strong><u>Backups</u></strong></p>
@@ -184,6 +193,7 @@
                                                      '>
                                             Pick 'n Click</asp:Label><br />
                                         <p id="BPG" class="lineup_validation_error"></p>
+                                        <asp:HiddenField ID="hiddenBPG" runat="server" />
                                         <br />
                                         <strong>SG</strong>:
                                         <asp:Label ID="lblBackupSG" runat="server" CssClass="handcursor" BorderStyle="Solid"
@@ -199,6 +209,7 @@
                                                      '>
                                             Pick 'n Click</asp:Label><br />
                                         <p id="BSG" class="lineup_validation_error"></p>
+                                        <asp:HiddenField ID="hiddenBSG" runat="server" />
                                         <br />
                                         <strong>SF</strong>:
                                         <asp:Label ID="lblBackupSF" runat="server" CssClass="handcursor" BorderStyle="Solid"
@@ -214,6 +225,7 @@
                                                      '>
                                             Pick 'n Click</asp:Label><br />
                                         <p id="BSF" class="lineup_validation_error"></p>
+                                        <asp:HiddenField ID="hiddenBSF" runat="server" />
                                         <br />
                                         <strong>PF</strong>:
                                         <asp:Label ID="lblBackupPF" runat="server" CssClass="handcursor" BorderStyle="Solid"
@@ -229,6 +241,7 @@
                                                      '>
                                             Pick 'n Click</asp:Label><br />
                                         <p id="BPF" class="lineup_validation_error"></p>
+                                        <asp:HiddenField ID="hiddenBPF" runat="server" />
                                         <br />
                                         <strong>C&nbsp;</strong>&nbsp;:
                                         <asp:Label ID="lblBackupC" runat="server" CssClass="handcursor" BorderStyle="Solid"
@@ -244,6 +257,7 @@
                                                      '>
                                             Pick 'n Click</asp:Label>
                                         <p id="BC" class="lineup_validation_error"></p>
+                                        <asp:HiddenField ID="hiddenBC" runat="server" />
                                     </td>
                                     <td>
                                         <p>
@@ -262,6 +276,7 @@
                                                      '>
                                                 Pick 'n Click</asp:Label><br />
                                             <p id="G1" class="lineup_validation_error"></p>
+                                            <asp:HiddenField ID="hiddenG1" runat="server" />
                                             <br />
                                             <strong>2</strong>:
                                             <asp:Label ID="lblGarbage2" runat="server" CssClass="handcursor" BorderStyle="Solid"
@@ -277,6 +292,7 @@
                                                      '>
                                                 Pick 'n Click</asp:Label>
                                             <p id="G2" class="lineup_validation_error"></p>
+                                            <asp:HiddenField ID="hiddenG2" runat="server" />
                                     </td>
                                 </tr>
                             </table>
@@ -288,7 +304,6 @@
                         <br />
                         <center>
                             <asp:Button ID="ButtonSubmitLineup" runat="server" Text="Submit" OnClick="ButtonSubmitLineup_Click"></asp:Button>
-                            <asp:Literal ID="litHiddenPlaceholder" runat="server"></asp:Literal>
                         </center>
                     </asp:Panel>
                     <br />
