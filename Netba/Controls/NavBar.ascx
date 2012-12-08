@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NavBar.ascx.cs" Inherits="netba.Controls.NavBar" %>
 <table cellpadding="0" border="0" cellspacing="0">
-    <tr valign="bottom" width="160px">
+    <tr valign="bottom">
         <td valign="bottom">
             <a href="/Pages/home.aspx"><img width="160px" alt="home" border="0" src="/Images/netba4.jpg" /></a>
         </td>

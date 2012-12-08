@@ -164,6 +164,7 @@ namespace netba.Pages
 			lblGameHeader.Text += r["visitor"].ToString() + " @ " + r["home"].ToString();
 			lblGameHeader.Text += ", " + r["NumGames"] + " games";
 
+            Session["WeekId"] = lbWeeks.SelectedValue;
 			Session["LineupGameId"] = GameId;
 
             DataSet lineup = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
@@ -343,7 +344,7 @@ namespace netba.Pages
         {
             // get last weeks starters who are still on the team and active
             DataSet lineup = SqlHelper.ExecuteDataset( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-                "spGetTeamLastWeekLineup", lbTeams.SelectedValue );
+                "spGetTeamLastWeekLineup", lbTeams.SelectedValue, Session["WeekId"] );
 
             ResetFields();
 

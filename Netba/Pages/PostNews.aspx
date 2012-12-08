@@ -23,7 +23,7 @@
                 <p>
                     &nbsp;</p>
                 <asp:Label ID="lblPageTitle" runat="server" CssClass="pagetitle">Post News</asp:Label>
-                <hr align="left" width="100%" color="red" size="1">
+                <hr align="left" width="100%" size="1" />
                 <p>
                     <em><font size="2">Note: you can embed HTML tags in your message if you like.</font></em></p>
                 <p>

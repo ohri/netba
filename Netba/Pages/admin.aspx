@@ -5,8 +5,7 @@
     System Administration
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="Server">
-    <p>
-        Password Reset</p>
+    <p>Password Reset</p>
     <asp:DropDownList ID="ddlOwners" runat="server">
     </asp:DropDownList>
     <asp:Button ID="ButtonResetPassword" runat="server" Text="Reset" OnClick="ButtonResetPassword_Click">
@@ -32,40 +31,35 @@
     <p>
         <asp:CheckBox ID="cbFAOpen" runat="server" Text="Free Agency Open" AutoPostBack="True"
             TextAlign="Left"></asp:CheckBox></p>
-    <p>
-        <div class="navdivider">
-        </div>
-    </p>
-    <p>
-        <table border="0" cellpadding="5" cellspacing="5">
-            <tr>
-                <th colspan="2">
-                    Undo Pick
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    Round:
-                </td>
-                <td>
-                    <asp:TextBox ID="tbRound" runat="server" Width="32px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Pick:
-                </td>
-                <td>
-                    <asp:TextBox ID="tbPick" runat="server" Width="32px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <asp:Button ID="btnGo" runat="server" Text="Go" OnClick="btnGo_Click"></asp:Button>
-                </td>
-            </tr>
-        </table>
-    </p>
+   <div class="navdivider"></div>
+    <table border="0" cellpadding="5" cellspacing="5">
+        <tr>
+            <th colspan="2">
+                Undo Pick
+            </th>
+        </tr>
+        <tr>
+            <td>
+                Round:
+            </td>
+            <td>
+                <asp:TextBox ID="tbRound" runat="server" Width="32px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pick:
+            </td>
+            <td>
+                <asp:TextBox ID="tbPick" runat="server" Width="32px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <asp:Button ID="btnGo" runat="server" Text="Go" OnClick="btnGo_Click"></asp:Button>
+            </td>
+        </tr>
+    </table>
     <p>
         <asp:Label ID="lblPickMessage" runat="server"></asp:Label></p>
 </asp:Content>

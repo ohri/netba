@@ -23,7 +23,7 @@
                 <p>
                     &nbsp;</p>
                 <asp:Label ID="lblPageTitle" runat="server" CssClass="pagetitle">Log Viewer</asp:Label>
-                <hr align="left" width="100%" color="red" size="1">
+                <hr align="left" width="100%" size="1" />
                 <p>
                     <font face="Arial" size="6">
                         <asp:DataGrid ID="dgLogEntries" runat="server" CssClass="grid" AllowPaging="True"

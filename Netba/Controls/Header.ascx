@@ -4,4 +4,4 @@
 <p>
     &nbsp;</p>
 <asp:Label ID="lblPageTitle" runat="server" CssClass="PageTitle"></asp:Label>
-<hr align="left" width="100%" color="red" size="1">
+<hr align="left" width="100%" size="1" />

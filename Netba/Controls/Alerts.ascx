@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Alerts.ascx.cs" Inherits="netba.Controls.Alerts" %>
-<link href="Styles\netba.css" type="text/css" rel="stylesheet"></link>
+<link href="/Styles/netba.css" type="text/css" rel="stylesheet" />
 <asp:Panel ID="Panel1" BackColor="White" BorderColor="Silver" BorderStyle="Solid"
     runat="server">
     <center>

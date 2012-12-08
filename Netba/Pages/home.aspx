@@ -53,7 +53,7 @@
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="PostNews.aspx" Font-Italic="True"
                     Font-Size="Smaller">Post News</asp:HyperLink>
             </td>
-            <td width="225" bordercolor="silver">
+            <td width="225">
                 <p>
                     <uc1:TopPlayersLastNight ID="TopPlayersLastNight1" runat="server"></uc1:TopPlayersLastNight>
                 </p>

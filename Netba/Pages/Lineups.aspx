@@ -69,7 +69,7 @@
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
                 <asp:Label ID="lblPageTitle" runat="server" CssClass="pagetitle">Lineup Submission</asp:Label>
-                <hr align="left" width="100%" color="red" size="1" />
+                <hr align="left" width="100%" size="1" />
                 <p></p>
                 <div>
                     <asp:Panel ID="PlayerSelection" runat="server" Visible="False" BorderStyle="None"

@@ -23,7 +23,7 @@
                 <p>
                     &nbsp;</p>
                 <asp:Label ID="lblPageTitle" runat="server" CssClass="pagetitle">Player Search</asp:Label>
-                <hr align="left" width="100%" color="red" size="1">
+                <hr align="left" width="100%" size="1" />
                 <p>
                     <asp:DataGrid ID="dgSearchResults" CssClass="grid" runat="server" AutoGenerateColumns="False">
                         <HeaderStyle CssClass="gridheader"></HeaderStyle>

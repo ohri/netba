@@ -21,7 +21,7 @@
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
                 <asp:Label ID="lblPageTitle" runat="server" CssClass="pagetitle">Select Players</asp:Label>
-                <hr align="left" width="100%" color="red" size="1"></hr>
+                <hr align="left" width="100%" size="1" />
                 <table border="0" cellpadding="5" cellspacing="5">
                     <tr>
                         <td>

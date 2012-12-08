@@ -31,7 +31,7 @@
                 <p>
                     <asp:Label ID="lblPageTitle" runat="server" CssClass="pagetitle">Scoring Management</asp:Label>
                 </p>
-                <hr align="left" width="100%" color="red" size="1">
+                <hr align="left" width="100%" size="1" />
                 <p>
                 </p>
                 <p>
