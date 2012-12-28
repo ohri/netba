@@ -18,3 +18,7 @@ Netba/bin/Microsoft.*
 NetbaTradeAggregator/obj/*
 NetbaTradeAggregator/bin/Debug/*
 NetbaTradeAggregator/bin/Release/*
+
+Netba/Netba.Publish.xml
+
+Netba.suo
