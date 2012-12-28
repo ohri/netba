@@ -23,24 +23,30 @@ namespace netba.Pages
 			// get game information
 			int gameid = Convert.ToInt32( Request["GameId"] );
             DataSet dsGameInfo = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-				"spGetGameDetails", gameid );		
-			int hometeamid = (int)dsGameInfo.Tables[0].Rows[0]["hometeamid"];
-			int awayteamid = (int)dsGameInfo.Tables[0].Rows[0]["visitorteamid"];
+				"spGetGameDetails", gameid );
+            DataRow r = dsGameInfo.Tables[0].Rows[0];
+            
+            int hometeamid = (int)r["hometeamid"];
+			int awayteamid = (int)r["visitorteamid"];
 
-			lblPageTitle.Text = "Week " + dsGameInfo.Tables[0].Rows[0]["Week"].ToString() 
-				+ ": " + dsGameInfo.Tables[0].Rows[0]["visitor"].ToString() 
-				+ " " + dsGameInfo.Tables[0].Rows[0]["visitorscore"].ToString()
-				+ " @ " + dsGameInfo.Tables[0].Rows[0]["home"].ToString()
-				+ " " + dsGameInfo.Tables[0].Rows[0]["homescore"].ToString();
-			lblHome.Text = dsGameInfo.Tables[0].Rows[0]["home"].ToString();
-			lblAway.Text = dsGameInfo.Tables[0].Rows[0]["visitor"].ToString();
+			lblPageTitle.Text = "Week " + r["Week"].ToString() 
+				+ ": " + r["visitor"].ToString() 
+				+ " " + r["visitorscore"].ToString()
+				+ " @ " + r["home"].ToString()
+				+ " " + r["homescore"].ToString();
+            if( (bool)r["Overtime"] )
+            {
+                lblPageTitle.Text += " (OT)";
+            }
+			lblHome.Text = r["home"].ToString();
+			lblAway.Text = r["visitor"].ToString();
 
 			if( dsGameInfo.Tables[0].Rows[0]["HomeWins"] != DBNull.Value )
 			{
-				lblGameScore.Text = dsGameInfo.Tables[0].Rows[0]["visitor"].ToString() 
-				+ " wins " + dsGameInfo.Tables[0].Rows[0]["visitorwins"].ToString()
-				+ " games, " + dsGameInfo.Tables[0].Rows[0]["home"].ToString()
-				+ " wins " + dsGameInfo.Tables[0].Rows[0]["homewins"].ToString()
+				lblGameScore.Text = r["visitor"].ToString() 
+				+ " wins " + r["visitorwins"].ToString()
+				+ " games, " + r["home"].ToString()
+				+ " wins " + r["homewins"].ToString()
 				+ " games";
 			}
 
