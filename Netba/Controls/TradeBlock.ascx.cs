@@ -16,7 +16,7 @@ namespace netba.Controls
             if( !IsPostBack )
             {
                 DataSet dsTopPerformances = SqlHelper.ExecuteDataset( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-                    @"spFetchTradeBlockRecent" );
+                    @"spFetchTradeBlockByScore" );
                 dgTradeBlock.DataSource = dsTopPerformances;
                 dgTradeBlock.DataBind();
             }
