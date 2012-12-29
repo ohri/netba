@@ -16,7 +16,11 @@ namespace netba.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if( !DBUtilities.FreeAgencyIsOpen() )
+            {
+                Response.Redirect( "/Static/fa_closed.htm" );
+            }
+            if( !IsPostBack )
             {
                 if (Request.QueryString["Mode"] == "New")
                 {

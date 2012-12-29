@@ -138,6 +138,7 @@
     <Content Include="Site.Master" />
     <Content Include="Static\bad_params.html" />
     <Content Include="Static\default_error.html" />
+    <Content Include="Static\fa_closed.htm" />
     <Content Include="Static\notauthorized.html" />
     <Content Include="Static\not_your_trade.html" />
     <Content Include="Static\no_lineups.html" />

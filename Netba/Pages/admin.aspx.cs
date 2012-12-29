@@ -84,5 +84,16 @@ namespace netba.Pages
             SqlHelper.ExecuteNonQuery(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
                 "spSetDraftStatus", status);
         }
+
+        protected void cbFAOpen_CheckedChanged( object sender, EventArgs e )
+        {
+            int status = 0;
+            if( cbFAOpen.Checked )
+            {
+                status = 1;
+            }
+            SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spSetFAStatus", status );            
+        }
     }
 }

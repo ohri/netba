@@ -87,5 +87,11 @@ namespace netba
                 "spGetCurrentWeek" ).ToString();
         }
 
+        public static bool FreeAgencyIsOpen()
+        {
+            return (bool)SqlHelper.ExecuteScalar( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spIsFAOpen" );
+        }
+
 	}
 }

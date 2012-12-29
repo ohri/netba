@@ -16,6 +16,10 @@ namespace netba.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if( !DBUtilities.FreeAgencyIsOpen() )
+            {
+                Response.Redirect( "/Static/fa_closed.htm" );
+            }
             Session["TeamId"] = DBUtilities.GetUsersTeamId(Page.User.Identity.Name);
             DataSet ds = SqlHelper.ExecuteDataset(System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
                 "spFetchTeamTransactions", Session["TeamId"]);
