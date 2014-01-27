@@ -19,6 +19,9 @@
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundColumn>
             <asp:BoundColumn DataField="result" HeaderText="Result"></asp:BoundColumn>
+            <asp:BoundColumn DataField="PowerRating" HeaderText="Power Rating">
+                <ItemStyle HorizontalAlign="Right"></ItemStyle>
+            </asp:BoundColumn>
         </Columns>
     </asp:DataGrid>
 </asp:Content>

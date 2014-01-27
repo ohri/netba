@@ -26,7 +26,7 @@ namespace netba.Pages
             dgTransactions.DataSource = ds;
             dgTransactions.DataBind();
         }
-
+        
         protected void dgTransactions_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
         {
             dgTransactions.CurrentPageIndex = e.NewPageIndex;
