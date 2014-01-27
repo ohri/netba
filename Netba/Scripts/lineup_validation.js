@@ -3,7 +3,7 @@
     // in some browsers, there is trailing white space, which breaks the split
     var trimmed = $.trim( player_text );
 	var pos = trimmed.split( " " );
-	return pos[pos.length - 2];
+	return pos[pos.length - 3];
 }
 
 function lineup_validate( pos_text, lineup_spot )
