@@ -52,6 +52,26 @@
             }
         }
 
+        function LineupOnClick( label, value, hidden, slot )
+        {
+            var x = $('#lbRoster :selected').text();
+            if (x == $( label ).html()) {
+                $( hidden ).val('');
+                $( label ).html('');
+                $( value ).html('');
+            }
+            else
+            {
+                $( value ).html(lineup_validate(x, slot));
+                if ($( value ).html().length == 0)
+                {
+                    $( hidden ).val($('#lbRoster').val());
+                    $( label ).html( x );
+                }
+            }
+            enable_submit();
+        }
+
       $( document ).ready( function ()
       {
           enable_submit();
@@ -100,125 +120,40 @@
                                         <p><strong><u>Starters</u></strong></p>
                                         <strong>PG:</strong>
                                         <asp:Label ID="lblPG" runat="server" CssClass="handcursor" BorderStyle="Solid" Width="160px"
-                                            Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                            onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblPG").html() )
-                                                     {
-                                                         $("#hiddenSPG").val( "" );
-                                                         $("#lblPG").html( "" );
-                                                         $("#SPG").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#SPG").html( lineup_validate( x, 1 ) );
-                                                         if( $("#SPG").html().length == 0 )
-                                                         {
-                                                             $("#hiddenSPG").val( $("#lbRoster").val() );
-                                                             $("#lblPG").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                            Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px" Height="13px"
+                                            onClick="javascript:LineupOnClick( '#lblPG', '#SPG', '#hiddenSPG', 1 );">
                                             Pick 'n Click</asp:Label><br />
                                         <asp:HiddenField ID="hiddenSPG" runat="server" />
                                         <p id="SPG" class="lineup_validation_error"></p>
                                         <br />
                                         <strong>SG</strong>:
                                         <asp:Label ID="lblSG" runat="server" CssClass="handcursor" BorderStyle="Solid" Width="160px"
-                                            Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                            onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblSG").html() )
-                                                     {
-                                                         $("#hiddenSSG").val( "" );
-                                                         $("#lblSG").html( "" );
-                                                         $("#SSG").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#SSG").html( lineup_validate( x, 2 ) );
-                                                         if( $("#SSG").html().length == 0 )
-                                                         {
-                                                             $("#hiddenSSG").val( $("#lbRoster").val() );
-                                                             $("#lblSG").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                            Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px" Height="13px"
+                                            onClick="javascript:LineupOnClick( '#lblSG', '#SSG', '#hiddenSSG', 2 );">
                                             Pick 'n Click</asp:Label><br />
                                         <asp:HiddenField ID="hiddenSSG" runat="server" />
                                         <p id="SSG" class="lineup_validation_error"></p>
                                         <br />
                                         <strong>SF</strong>:
                                         <asp:Label ID="lblSF" runat="server" CssClass="handcursor" BorderStyle="Solid" Width="160px"
-                                            Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                            onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblSF").html() )
-                                                     {
-                                                         $("#hiddenSSF").val( "" );
-                                                         $("#lblSF").html( "" );
-                                                         $("#SSF").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#SSF").html( lineup_validate( x, 3 ) );
-                                                         if( $("#SSF").html().length == 0 )
-                                                         {
-                                                             $("#hiddenSSF").val( $("#lbRoster").val() );
-                                                             $("#lblSF").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                            Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px" Height="13px"
+                                            onClick="javascript:LineupOnClick( '#lblSF', '#SSF', '#hiddenSSF', 3 );">
                                             Pick 'n Click</asp:Label><br />
                                         <asp:HiddenField ID="hiddenSSF" runat="server" />
                                         <p id="SSF" class="lineup_validation_error"></p>
                                         <br />
                                         <strong>PF</strong>:
                                         <asp:Label ID="lblPF" runat="server" CssClass="handcursor" BorderStyle="Solid" Width="160px"
-                                            Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                            onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblPF").html() )
-                                                     {
-                                                         $("#hiddenSPF").val( "" );
-                                                         $("#lblPF").html( "" );
-                                                         $("#SPF").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#SPF").html( lineup_validate( x, 4 ) );
-                                                         if( $("#SPF").html().length == 0 )
-                                                         {
-                                                             $("#hiddenSPF").val( $("#lbRoster").val() );
-                                                             $("#lblPF").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                            Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px" Height="13px"
+                                            onClick="javascript:LineupOnClick( '#lblPF', '#SPF', '#hiddenSPF', 4 );">
                                             Pick 'n Click</asp:Label><br />
                                         <asp:HiddenField ID="hiddenSPF" runat="server" />
                                         <p id="SPF" class="lineup_validation_error"></p>
                                         <br />
                                         <strong>C&nbsp; </strong>:
                                         <asp:Label ID="lblC" runat="server" CssClass="handcursor" BorderStyle="Solid" Width="160px"
-                                            Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                            onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblC").html() )
-                                                     {
-                                                         $("#hiddenSC").val( "" );
-                                                         $("#lblC").html( "" );
-                                                         $("#SC").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#SC").html( lineup_validate( x, 5 ) );
-                                                         if( $("#SC").html().length == 0 )
-                                                         {
-                                                             $("#hiddenSC").val( $("#lbRoster").val() );
-                                                             $("#lblC").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                            Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px" Height="13px"
+                                            onClick="javascript:LineupOnClick( '#lblC', '#SC', '#hiddenSC', 5 );">
                                             Pick 'n Click</asp:Label>
                                         <p id="SC" class="lineup_validation_error"></p>
                                         <asp:HiddenField ID="hiddenSC" runat="server" />
@@ -226,126 +161,41 @@
                                     <td>
                                         <p><strong><u>Backups</u></strong></p>
                                         <strong>PG</strong>:
-                                        <asp:Label ID="lblBackupPG" runat="server" CssClass="handcursor" BorderStyle="Solid"
+                                        <asp:Label ID="lblBackupPG" runat="server" CssClass="handcursor" BorderStyle="Solid" Height="13px"
                                             Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                            onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblBackupPG").html() )
-                                                     {
-                                                         $("#hiddenBPG").val( "" );
-                                                         $("#lblBackupPG").html( "" );
-                                                         $("#BPG").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#BPG").html( lineup_validate( x, 6 ) );
-                                                         if( $("#BPG").html().length == 0 )
-                                                         {
-                                                             $("#hiddenBPG").val( $("#lbRoster").val() );
-                                                             $("#lblBackupPG").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                            onClick="javascript:LineupOnClick( '#lblBackupPG', '#BPG', '#hiddenBPG', 6 );">
                                             Pick 'n Click</asp:Label><br />
                                         <p id="BPG" class="lineup_validation_error"></p>
                                         <asp:HiddenField ID="hiddenBPG" runat="server" />
                                         <br />
                                         <strong>SG</strong>:
-                                        <asp:Label ID="lblBackupSG" runat="server" CssClass="handcursor" BorderStyle="Solid"
+                                        <asp:Label ID="lblBackupSG" runat="server" CssClass="handcursor" BorderStyle="Solid" Height="13px"
                                             Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                            onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblBackupSG").html() )
-                                                     {
-                                                         $("#hiddenBSG").val( "" );
-                                                         $("#lblBackupSG").html( "" );
-                                                         $("#BSG").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#BSG").html( lineup_validate( x, 7 ) );
-                                                         if( $("#BSG").html().length == 0 )
-                                                         {
-                                                             $("#hiddenBSG").val( $("#lbRoster").val() );
-                                                             $("#lblBackupSG").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                            onClick="javascript:LineupOnClick( '#lblBackupSG', '#BSG', '#hiddenBSG', 7 );">
                                             Pick 'n Click</asp:Label><br />
                                         <p id="BSG" class="lineup_validation_error"></p>
                                         <asp:HiddenField ID="hiddenBSG" runat="server" />
                                         <br />
                                         <strong>SF</strong>:
-                                        <asp:Label ID="lblBackupSF" runat="server" CssClass="handcursor" BorderStyle="Solid"
+                                        <asp:Label ID="lblBackupSF" runat="server" CssClass="handcursor" BorderStyle="Solid" Height="13px"
                                             Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                            onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblBackupSF").html() )
-                                                     {
-                                                         $("#hiddenBSF").val( "" );
-                                                         $("#lblBackupSF").html( "" );
-                                                         $("#BSF").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#BSF").html( lineup_validate( x, 8 ) );
-                                                         if( $("#BSF").html().length == 0 )
-                                                         {
-                                                             $("#hiddenBSF").val( $("#lbRoster").val() );
-                                                             $("#lblBackupSF").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                            onClick="javascript:LineupOnClick( '#lblBackupSF', '#BSF', '#hiddenBSF', 8 );">
                                             Pick 'n Click</asp:Label><br />
                                         <p id="BSF" class="lineup_validation_error"></p>
                                         <asp:HiddenField ID="hiddenBSF" runat="server" />
                                         <br />
                                         <strong>PF</strong>:
-                                        <asp:Label ID="lblBackupPF" runat="server" CssClass="handcursor" BorderStyle="Solid"
+                                        <asp:Label ID="lblBackupPF" runat="server" CssClass="handcursor" BorderStyle="Solid" Height="13px"
                                             Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                            onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblBackupPF").html() )
-                                                     {
-                                                         $("#hiddenBPF").val( "" );
-                                                         $("#lblBackupPF").html( "" );
-                                                         $("#BPF").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#BPF").html( lineup_validate( x, 9 ) );
-                                                         if( $("#BPF").html().length == 0 )
-                                                         {
-                                                             $("#hiddenBPF").val( $("#lbRoster").val() );
-                                                             $("#lblBackupPF").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                            onClick="javascript:LineupOnClick( '#lblBackupPF', '#BPF', '#hiddenBPF', 9 );">
                                             Pick 'n Click</asp:Label><br />
                                         <p id="BPF" class="lineup_validation_error"></p>
                                         <asp:HiddenField ID="hiddenBPF" runat="server" />
                                         <br />
                                         <strong>C&nbsp;</strong>&nbsp;:
-                                        <asp:Label ID="lblBackupC" runat="server" CssClass="handcursor" BorderStyle="Solid"
+                                        <asp:Label ID="lblBackupC" runat="server" CssClass="handcursor" BorderStyle="Solid" Height="13px"
                                             Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                            onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblBackupC").html() )
-                                                     {
-                                                         $("#hiddenBC").val( "" );
-                                                         $("#lblBackupC").html( "" );
-                                                         $("#BC").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#BC").html( lineup_validate( x, 10 ) );
-                                                         if( $("#BC").html().length == 0 )
-                                                         {
-                                                             $("#hiddenBC").val( $("#lbRoster").val() );
-                                                             $("#lblBackupC").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                            onClick="javascript:LineupOnClick( '#lblBackupC', '#BC', '#hiddenBC', 10 );">
                                             Pick 'n Click</asp:Label>
                                         <p id="BC" class="lineup_validation_error"></p>
                                         <asp:HiddenField ID="hiddenBC" runat="server" />
@@ -354,51 +204,17 @@
                                         <p>
                                             <strong><u>Garbage</u></strong></p>
                                             <strong>1</strong>:
-                                            <asp:Label ID="lblGarbage1" runat="server" CssClass="handcursor" BorderStyle="Solid"
+                                            <asp:Label ID="lblGarbage1" runat="server" CssClass="handcursor" BorderStyle="Solid" Height="13px"
                                                 Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                                onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblGarbage1").html() )
-                                                     {
-                                                         $("#hiddenG1").val( "" );
-                                                         $("#lblGarbage1").html( "" );
-                                                         $("#G1").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#G1").html( lineup_validate( x, 11 ) );
-                                                         if( $("#G1").html().length == 0 )
-                                                         {
-                                                             $("#hiddenG1").val( $("#lbRoster").val() );
-                                                             $("#lblGarbage1").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                                onClick="javascript:LineupOnClick( '#lblGarbage1', '#G1', '#hiddenG1', 11 );">
                                                 Pick 'n Click</asp:Label><br />
                                             <p id="G1" class="lineup_validation_error"></p>
                                             <asp:HiddenField ID="hiddenG1" runat="server" />
                                             <br />
                                             <strong>2</strong>:
-                                            <asp:Label ID="lblGarbage2" runat="server" CssClass="handcursor" BorderStyle="Solid"
+                                            <asp:Label ID="lblGarbage2" runat="server" CssClass="handcursor" BorderStyle="Solid" Height="13px"
                                                 Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
-                                                onClick='var x = $("#lbRoster :selected").text();
-                                                     if( x == $("#lblGarbage2").html() )
-                                                     {
-                                                         $("#hiddenG2").val( "" );
-                                                         $("#lblGarbage2").html( "" );
-                                                         $("#G2").html( "" );
-                                                     }
-                                                     else
-                                                     {
-                                                         $("#G2").html( lineup_validate( x, 12 ) );
-                                                         if( $("#G2").html().length == 0 )
-                                                         {
-                                                             $("#hiddenG2").val( $("#lbRoster").val() );
-                                                             $("#lblGarbage2").html( x );
-                                                         }
-                                                     }
-                                                     enable_submit();
-                                                     '>
+                                                onClick="javascript:LineupOnClick( '#lblGarbage2', '#G2', '#hiddenG2', 12 );">
                                                 Pick 'n Click</asp:Label>
                                             <p id="G2" class="lineup_validation_error"></p>
                                             <asp:HiddenField ID="hiddenG2" runat="server" />
