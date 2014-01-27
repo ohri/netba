@@ -76,8 +76,9 @@
                         Height="396px">
                         <p>
                             <asp:Label ID="Label1" runat="server" Height="40px" Width="672px">Instructions: Select a player from the Roster listbox 
-                            on the left and click on the desired place on the depth chart on the right. Note: the tool will not stop you from putting 
-                            in a bogus lineup!</asp:Label></p>
+                            on the left and click on the desired place on the depth chart on the right. Clicking on a filled in slot with the same
+                                player will clear that slot.
+                            </asp:Label></p>
                         <p>
                             <asp:Label ID="lblGameHeader" runat="server" Font-Bold="True" Font-Italic="True"></asp:Label></p>
                         <div>
@@ -101,11 +102,20 @@
                                         <asp:Label ID="lblPG" runat="server" CssClass="handcursor" BorderStyle="Solid" Width="160px"
                                             Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                             onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#SPG").html( lineup_validate( x, 1 ) );
-                                                     if( $("#SPG").html().length == 0 )
+                                                     if( x == $("#lblPG").html() )
                                                      {
-                                                         $("#hiddenSPG").val( $("#lbRoster").val() );
-                                                         $("#lblPG").html( x );
+                                                         $("#hiddenSPG").val( "" );
+                                                         $("#lblPG").html( "" );
+                                                         $("#SPG").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#SPG").html( lineup_validate( x, 1 ) );
+                                                         if( $("#SPG").html().length == 0 )
+                                                         {
+                                                             $("#hiddenSPG").val( $("#lbRoster").val() );
+                                                             $("#lblPG").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -117,11 +127,20 @@
                                         <asp:Label ID="lblSG" runat="server" CssClass="handcursor" BorderStyle="Solid" Width="160px"
                                             Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                             onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#SSG").html( lineup_validate( x, 2 ) );
-                                                     if( $("#SSG").html().length == 0 )
+                                                     if( x == $("#lblSG").html() )
                                                      {
-                                                         $("#hiddenSSG").val( $("#lbRoster").val() );
-                                                         $("#lblSG").html( x );
+                                                         $("#hiddenSSG").val( "" );
+                                                         $("#lblSG").html( "" );
+                                                         $("#SSG").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#SSG").html( lineup_validate( x, 2 ) );
+                                                         if( $("#SSG").html().length == 0 )
+                                                         {
+                                                             $("#hiddenSSG").val( $("#lbRoster").val() );
+                                                             $("#lblSG").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -133,11 +152,20 @@
                                         <asp:Label ID="lblSF" runat="server" CssClass="handcursor" BorderStyle="Solid" Width="160px"
                                             Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                             onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#SSF").html( lineup_validate( x, 3 ) );
-                                                     if( $("#SSF").html().length == 0 )
+                                                     if( x == $("#lblSF").html() )
                                                      {
-                                                         $("#hiddenSSF").val( $("#lbRoster").val() );
-                                                         $("#lblSF").html( x );
+                                                         $("#hiddenSSF").val( "" );
+                                                         $("#lblSF").html( "" );
+                                                         $("#SSF").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#SSF").html( lineup_validate( x, 3 ) );
+                                                         if( $("#SSF").html().length == 0 )
+                                                         {
+                                                             $("#hiddenSSF").val( $("#lbRoster").val() );
+                                                             $("#lblSF").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -149,11 +177,20 @@
                                         <asp:Label ID="lblPF" runat="server" CssClass="handcursor" BorderStyle="Solid" Width="160px"
                                             Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                             onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#SPF").html( lineup_validate( x, 4 ) );
-                                                     if( $("#SPF").html().length == 0 )
+                                                     if( x == $("#lblPF").html() )
                                                      {
-                                                         $("#hiddenSPF").val( $("#lbRoster").val() );
-                                                         $("#lblPF").html( x );
+                                                         $("#hiddenSPF").val( "" );
+                                                         $("#lblPF").html( "" );
+                                                         $("#SPF").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#SPF").html( lineup_validate( x, 4 ) );
+                                                         if( $("#SPF").html().length == 0 )
+                                                         {
+                                                             $("#hiddenSPF").val( $("#lbRoster").val() );
+                                                             $("#lblPF").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -165,11 +202,20 @@
                                         <asp:Label ID="lblC" runat="server" CssClass="handcursor" BorderStyle="Solid" Width="160px"
                                             Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                             onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#SC").html( lineup_validate( x, 5 ) );
-                                                     if( $("#SC").html().length == 0 )
+                                                     if( x == $("#lblC").html() )
                                                      {
-                                                         $("#hiddenSC").val( $("#lbRoster").val() );
-                                                         $("#lblC").html( x );
+                                                         $("#hiddenSC").val( "" );
+                                                         $("#lblC").html( "" );
+                                                         $("#SC").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#SC").html( lineup_validate( x, 5 ) );
+                                                         if( $("#SC").html().length == 0 )
+                                                         {
+                                                             $("#hiddenSC").val( $("#lbRoster").val() );
+                                                             $("#lblC").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -183,11 +229,20 @@
                                         <asp:Label ID="lblBackupPG" runat="server" CssClass="handcursor" BorderStyle="Solid"
                                             Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                             onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#BPG").html( lineup_validate( x, 6 ) );
-                                                     if( $("#BPG").html().length == 0 )
+                                                     if( x == $("#lblBackupPG").html() )
                                                      {
-                                                         $("#hiddenBPG").val( $("#lbRoster").val() );
-                                                         $("#lblBackupPG").html( x );
+                                                         $("#hiddenBPG").val( "" );
+                                                         $("#lblBackupPG").html( "" );
+                                                         $("#BPG").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#BPG").html( lineup_validate( x, 6 ) );
+                                                         if( $("#BPG").html().length == 0 )
+                                                         {
+                                                             $("#hiddenBPG").val( $("#lbRoster").val() );
+                                                             $("#lblBackupPG").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -199,11 +254,20 @@
                                         <asp:Label ID="lblBackupSG" runat="server" CssClass="handcursor" BorderStyle="Solid"
                                             Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                             onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#BSG").html( lineup_validate( x, 7 ) );
-                                                     if( $("#BSG").html().length == 0 )
+                                                     if( x == $("#lblBackupSG").html() )
                                                      {
-                                                         $("#hiddenBSG").val( $("#lbRoster").val() );
-                                                         $("#lblBackupSG").html( x );
+                                                         $("#hiddenBSG").val( "" );
+                                                         $("#lblBackupSG").html( "" );
+                                                         $("#BSG").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#BSG").html( lineup_validate( x, 7 ) );
+                                                         if( $("#BSG").html().length == 0 )
+                                                         {
+                                                             $("#hiddenBSG").val( $("#lbRoster").val() );
+                                                             $("#lblBackupSG").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -215,11 +279,20 @@
                                         <asp:Label ID="lblBackupSF" runat="server" CssClass="handcursor" BorderStyle="Solid"
                                             Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                             onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#BSF").html( lineup_validate( x, 8 ) );
-                                                     if( $("#BSF").html().length == 0 )
+                                                     if( x == $("#lblBackupSF").html() )
                                                      {
-                                                         $("#hiddenBSF").val( $("#lbRoster").val() );
-                                                         $("#lblBackupSF").html( x );
+                                                         $("#hiddenBSF").val( "" );
+                                                         $("#lblBackupSF").html( "" );
+                                                         $("#BSF").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#BSF").html( lineup_validate( x, 8 ) );
+                                                         if( $("#BSF").html().length == 0 )
+                                                         {
+                                                             $("#hiddenBSF").val( $("#lbRoster").val() );
+                                                             $("#lblBackupSF").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -231,11 +304,20 @@
                                         <asp:Label ID="lblBackupPF" runat="server" CssClass="handcursor" BorderStyle="Solid"
                                             Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                             onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#BPF").html( lineup_validate( x, 9 ) );
-                                                     if( $("#BPF").html().length == 0 )
+                                                     if( x == $("#lblBackupPF").html() )
                                                      {
-                                                         $("#hiddenBPF").val( $("#lbRoster").val() );
-                                                         $("#lblBackupPF").html( x );
+                                                         $("#hiddenBPF").val( "" );
+                                                         $("#lblBackupPF").html( "" );
+                                                         $("#BPF").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#BPF").html( lineup_validate( x, 9 ) );
+                                                         if( $("#BPF").html().length == 0 )
+                                                         {
+                                                             $("#hiddenBPF").val( $("#lbRoster").val() );
+                                                             $("#lblBackupPF").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -247,11 +329,20 @@
                                         <asp:Label ID="lblBackupC" runat="server" CssClass="handcursor" BorderStyle="Solid"
                                             Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                             onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#BC").html( lineup_validate( x, 10 ) );
-                                                     if( $("#BC").html().length == 0 )
+                                                     if( x == $("#lblBackupC").html() )
                                                      {
-                                                         $("#hiddenBC").val( $("#lbRoster").val() );
-                                                         $("#lblBackupC").html( x );
+                                                         $("#hiddenBC").val( "" );
+                                                         $("#lblBackupC").html( "" );
+                                                         $("#BC").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#BC").html( lineup_validate( x, 10 ) );
+                                                         if( $("#BC").html().length == 0 )
+                                                         {
+                                                             $("#hiddenBC").val( $("#lbRoster").val() );
+                                                             $("#lblBackupC").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -266,11 +357,20 @@
                                             <asp:Label ID="lblGarbage1" runat="server" CssClass="handcursor" BorderStyle="Solid"
                                                 Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                                 onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#G1").html( lineup_validate( x, 11 ) );
-                                                     if( $("#G1").html().length == 0 )
+                                                     if( x == $("#lblGarbage1").html() )
                                                      {
-                                                         $("#hiddenG1").val( $("#lbRoster").val() );
-                                                         $("#lblGarbage1").html( x );
+                                                         $("#hiddenG1").val( "" );
+                                                         $("#lblGarbage1").html( "" );
+                                                         $("#G1").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#G1").html( lineup_validate( x, 11 ) );
+                                                         if( $("#G1").html().length == 0 )
+                                                         {
+                                                             $("#hiddenG1").val( $("#lbRoster").val() );
+                                                             $("#lblGarbage1").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
@@ -282,11 +382,20 @@
                                             <asp:Label ID="lblGarbage2" runat="server" CssClass="handcursor" BorderStyle="Solid"
                                                 Width="160px" Font-Size="X-Small" BorderColor="Silver" BackColor="#E0E0E0" BorderWidth="1px"
                                                 onClick='var x = $("#lbRoster :selected").text();
-                                                     $("#G2").html( lineup_validate( x, 12 ) );
-                                                     if( $("#G2").html().length == 0 )
+                                                     if( x == $("#lblGarbage2").html() )
                                                      {
-                                                         $("#hiddenG2").val( $("#lbRoster").val() );
-                                                         $("#lblGarbage2").html( x );
+                                                         $("#hiddenG2").val( "" );
+                                                         $("#lblGarbage2").html( "" );
+                                                         $("#G2").html( "" );
+                                                     }
+                                                     else
+                                                     {
+                                                         $("#G2").html( lineup_validate( x, 12 ) );
+                                                         if( $("#G2").html().length == 0 )
+                                                         {
+                                                             $("#hiddenG2").val( $("#lbRoster").val() );
+                                                             $("#lblGarbage2").html( x );
+                                                         }
                                                      }
                                                      enable_submit();
                                                      '>
