@@ -108,5 +108,16 @@ namespace netba.Pages
             SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
                 "spSetTradingStatus", status );
         }
+
+        protected void cbNagOwners_CheckedChanged( object sender, EventArgs e )
+        {
+            int status = 0;
+            if( cbNagOwnersOpen.Checked )
+            {
+                status = 1;
+            }
+            SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spSetNagOwnersStatus", status );
+        }
     }
 }

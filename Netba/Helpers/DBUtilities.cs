@@ -99,5 +99,11 @@ namespace netba
                 "spIsTradingOpen" );
         }
 
+        public static bool NagOwnersIsOpen()
+        {
+            return (bool)SqlHelper.ExecuteScalar( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spIsNagOwnersOpen" );
+        }
+
 	}
 }
