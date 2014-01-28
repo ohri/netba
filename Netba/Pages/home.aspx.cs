@@ -24,6 +24,12 @@ namespace netba.Pages
 				"spGetLatestNews" );
 			dlNews.DataSource = dsNews.Tables[0];
 			dlNews.DataBind();
+
+            if( DBUtilities.TradingIsOpen() )
+            {
+                netba.Controls.TradeBlock tb = (netba.Controls.TradeBlock)LoadControl( "~/Controls/TradeBlock.ascx" );
+                MaybeTradeBlock.Controls.Add( tb );
+            }
 		}
 
 		#region Web Form Designer generated code

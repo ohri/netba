@@ -61,7 +61,7 @@
                     <uc1:alerts ID="Alerts1" runat="server"></uc1:alerts>
                 </p>
                 <p>
-                    <uc1:TradeBlock ID="TradeBlock" runat="server"></uc1:TradeBlock>
+                    <asp:PlaceHolder ID="MaybeTradeBlock" runat="server"></asp:PlaceHolder>
                 </p>
             </td>
         </tr>
