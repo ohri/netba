@@ -31,6 +31,9 @@
     <p>
         <asp:CheckBox ID="cbFAOpen" runat="server" Text="Free Agency Open" AutoPostBack="True"
             TextAlign="Left" oncheckedchanged="cbFAOpen_CheckedChanged"></asp:CheckBox></p>
+    <p>
+        <asp:CheckBox ID="cbTradingOpen" runat="server" Text="Trading Open" AutoPostBack="True"
+            TextAlign="Left" oncheckedchanged="cbTradingOpen_CheckedChanged"></asp:CheckBox></p>
    <div class="navdivider"></div>
     <table border="0" cellpadding="5" cellspacing="5">
         <tr>

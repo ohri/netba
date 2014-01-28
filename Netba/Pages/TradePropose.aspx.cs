@@ -69,17 +69,17 @@ namespace netba.Pages
             
             // make sure this is not the trade deadzone (between week 15
             // and end of season
-            int Allowed = (int)SqlHelper.ExecuteScalar(
+            bool TradesOpen = (bool)SqlHelper.ExecuteScalar(
                 System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
-                "spIsTradingAllowed");
-            if (Allowed == 0)
+                "spIsTradingOpen");
+            if( !TradesOpen )
             {
                 // not allowed to see
                 Response.Redirect("/Static/no_trading_allowed.html");
             }
 
             // validate that the current user is allowed see this
-            Allowed = (int)SqlHelper.ExecuteScalar(
+            int Allowed = (int)SqlHelper.ExecuteScalar(
                 System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
                 "spUserAllowedToSeeTrade",
                 m_TradeId,

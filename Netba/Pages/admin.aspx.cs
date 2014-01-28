@@ -33,6 +33,8 @@ namespace netba.Pages
                 ddlOwners.DataBind();
 
                 cbDraftOpen.Checked = DBUtilities.DraftIsOpen();
+                cbFAOpen.Checked = DBUtilities.FreeAgencyIsOpen();
+                cbTradingOpen.Checked = DBUtilities.TradingIsOpen();
             }
 
             lblPickMessage.Text = "";
@@ -94,6 +96,17 @@ namespace netba.Pages
             }
             SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
                 "spSetFAStatus", status );            
+        }
+
+        protected void cbTradingOpen_CheckedChanged( object sender, EventArgs e )
+        {
+            int status = 0;
+            if( cbTradingOpen.Checked )
+            {
+                status = 1;
+            }
+            SqlHelper.ExecuteNonQuery( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spSetTradingStatus", status );
         }
     }
 }

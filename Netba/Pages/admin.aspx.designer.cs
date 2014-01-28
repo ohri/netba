@@ -85,6 +85,15 @@ namespace netba.Pages {
         protected global::System.Web.UI.WebControls.CheckBox cbFAOpen;
         
         /// <summary>
+        /// cbTradingOpen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbTradingOpen;
+        
+        /// <summary>
         /// tbRound control.
         /// </summary>
         /// <remarks>

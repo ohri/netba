@@ -93,5 +93,11 @@ namespace netba
                 "spIsFAOpen" );
         }
 
+        public static bool TradingIsOpen()
+        {
+            return (bool)SqlHelper.ExecuteScalar( System.Configuration.ConfigurationManager.AppSettings["ConnectionString"],
+                "spIsTradingOpen" );
+        }
+
 	}
 }
