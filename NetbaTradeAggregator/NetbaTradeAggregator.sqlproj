@@ -3,6 +3,8 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
     <PostConversionRemoveFromScc>;\\psf\Home\Documents\Dev\Projects\Netba\NetbaTradeAggregator\NetbaTradeAggregator.csproj</PostConversionRemoveFromScc>
     <PostConversionAddToScc>;\\psf\Home\Documents\Dev\Projects\Netba\NetbaTradeAggregator\NetbaTradeAggregator.sqlproj</PostConversionAddToScc>
   </PropertyGroup>
@@ -16,7 +18,7 @@
     <AssemblyName>NetbaTradeAggregator</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <RootNamespace>NetbaTradeAggregator</RootNamespace>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileUpgradeFlags>40</FileUpgradeFlags>
     <UpgradeBackupLocation>\\psf\Home\Documents\Dev\Projects\Netba\Backup\NetbaTradeAggregator\</UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
@@ -25,7 +27,7 @@
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <Name>NetbaTradeAggregator</Name>
     <ProjectVersion>4.0</ProjectVersion>
-    <ProjectGuid>{182fcb4a-931c-4a53-b21b-378508d5b3c2}</ProjectGuid>
+    <ProjectGuid>{b3076984-16f9-4565-a329-237a1196074d}</ProjectGuid>
     <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
     <GenerateDatabaseFile>False</GenerateDatabaseFile>
     <GenerateCreateScript>False</GenerateCreateScript>
@@ -33,7 +35,6 @@
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <DefaultSchema>dbo</DefaultSchema>
-    <SqlServerVerification>False</SqlServerVerification>
     <TargetLanguage>CS</TargetLanguage>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
