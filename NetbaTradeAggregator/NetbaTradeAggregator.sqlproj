@@ -2,9 +2,9 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
-    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
     <PostConversionRemoveFromScc>;\\psf\Home\Documents\Dev\Projects\Netba\NetbaTradeAggregator\NetbaTradeAggregator.csproj</PostConversionRemoveFromScc>
     <PostConversionAddToScc>;\\psf\Home\Documents\Dev\Projects\Netba\NetbaTradeAggregator\NetbaTradeAggregator.sqlproj</PostConversionAddToScc>
   </PropertyGroup>
@@ -24,10 +24,10 @@
     <OldToolsVersion>4.0</OldToolsVersion>
     <ConnectionString>
     </ConnectionString>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <Name>NetbaTradeAggregator</Name>
-    <ProjectVersion>4.0</ProjectVersion>
-    <ProjectGuid>{b3076984-16f9-4565-a329-237a1196074d}</ProjectGuid>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{f4c6368e-e88d-4b0e-a5a5-d85cf5adc91b}</ProjectGuid>
     <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
     <GenerateDatabaseFile>False</GenerateDatabaseFile>
     <GenerateCreateScript>False</GenerateCreateScript>
@@ -80,7 +80,6 @@
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

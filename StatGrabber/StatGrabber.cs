@@ -20,26 +20,15 @@ namespace StatGrabber
 
             ArrayList retval = new ArrayList();
 
-            Regex boxstart = new Regex( @"/nba/boxscore\?gameId=" );
+            Regex boxstart = new Regex(@"en"",""href"":""(http://espn.go.com/nba/boxscore\?gameId=\d*)");
             //Extract the address
             Match m = boxstart.Match( page );
             while( m.Success )
             {
-                int sPos = m.Index;
-                int ePos = 0;
-                if( sPos > 0 )
+                string url = m.Groups[1].Value;
+                if (!retval.Contains(url))
                 {
-                    Regex end = new Regex( "\"" );
-                    Match me = end.Match( page, sPos );
-                    ePos = me.Index;
-                    if( ePos > -1 )
-                    {
-                        string url = "http://espn.go.com" + page.Substring( sPos, ePos - sPos );
-                        if( !retval.Contains( url ) )
-                        {
-                            retval.Add( url );
-                        }
-                    }
+                    retval.Add(url);
                 }
                 m = m.NextMatch();
             }
@@ -230,7 +219,7 @@ namespace StatGrabber
         
         public string UpdateAveragesAndScores( SqlDatabase db, DateTime when )
         {
-            string result = "Successly updated scores and averages";
+            string result = "Successfully updated scores and averages";
             DbConnection conn = db.CreateConnection();
             conn.Open();
             DbTransaction trans = conn.BeginTransaction();

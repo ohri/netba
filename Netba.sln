@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Web
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netba", "Netba\Netba.csproj", "{61DB63E7-B356-41CF-8692-E83A61CE882A}"
 EndProject
@@ -42,6 +42,7 @@ Global
 		{6D4E3E76-4170-4077-AA37-49515CF16A26}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D4E3E76-4170-4077-AA37-49515CF16A26}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6D4E3E76-4170-4077-AA37-49515CF16A26}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6D4E3E76-4170-4077-AA37-49515CF16A26}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 		{6D4E3E76-4170-4077-AA37-49515CF16A26}.Release|x86.ActiveCfg = Release|Any CPU
 		{7091F4AE-13F7-4B9D-B776-B616BB4ECDEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7091F4AE-13F7-4B9D-B776-B616BB4ECDEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -52,6 +53,7 @@ Global
 		{7091F4AE-13F7-4B9D-B776-B616BB4ECDEC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7091F4AE-13F7-4B9D-B776-B616BB4ECDEC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7091F4AE-13F7-4B9D-B776-B616BB4ECDEC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7091F4AE-13F7-4B9D-B776-B616BB4ECDEC}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 		{7091F4AE-13F7-4B9D-B776-B616BB4ECDEC}.Release|x86.ActiveCfg = Release|Any CPU
 		{1D121B8E-8CF6-46F8-BB58-DA93F9B3F63F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D121B8E-8CF6-46F8-BB58-DA93F9B3F63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
