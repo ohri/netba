@@ -11,7 +11,7 @@ namespace StatGrabber
     public class StatGrabber
     {
         public StatGrabber()
-        {
+        { 
         }
 
         public ArrayList GetGames( DateTime DateToGet )
@@ -38,17 +38,20 @@ namespace StatGrabber
 
         public ArrayList GetGamePerformances( string url )
         {
-            Regex GetTeams = new Regex( @"</a>(.*)</th></tr><tr align=.right.>" );
-            Regex GetPlayerStatRows = new Regex( @"<td style=.text-align:left. nowrap>(.*)?</td></tr>" );
+            // <div class="team-name"><img src="http://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/phi.png&h=100&w=100" /></div>76ers<div class
+            Regex GetTeams = new Regex(@"<div class=""team-name""><img src.*?div>(.*?)<div class");
+
             /*
-            <td style="text-align:left" nowrap><a href="http://espn.go.com/nba/player/_/id/4270/trevor-booker">Trevor 
-            Booker</a>, PF</td><td>17</td><td>2-9</td><td>0-1</td><td>0-0</td><td align=right>1</td><td align=right>0</td>
-            <td>1</td><td>1</td><td>1</td><td>1</td><td>4</td><td>4</td><td>-15</td><td>4</td></tr>
+            <tr>< td class="name" "><a  name=" &lpos=nba:game:boxscore:playercard" href="http://espn.go.com/nba/player/_/id/3064290">A. Gordon</a>
+            <span class="position">PF</span></td><td class="min">30</td><td class="fg">4-10</td><td class="threeptm-a">0-1</td>
+            <td class="ftma">3-6</td><td class="oreb">2</td><td class="dreb">9</td><td class="reb">11</td><td class="ast">3</td>
+            <td class="stl">3</td><td class="blk">1</td><td class="to">2</td><td class="pf">3</td><td class="plusminus">+2</td>
+            <td class="pts">11</td></tr>
             */
+            Regex GetPlayerStatRows = new Regex(@"<tr><td class=""name"" "">(.*?)</td></tr>");
             Regex SplitStatRows = new Regex( @"</td><td.*?>" );
             Regex ExtractPlayerName = new Regex( @"^(?:.+?>)?([\w\.\'-]+)\s+?([\w\.\'-]+(?:\s[\w.]+)?)(?:.*?)?$" );
             Regex ExtractThrees = new Regex( @"([0-9]*)\-([0-9]*)" );
-//            Regex ESPNId = new Regex(@".+?\/([0-9]+)\/.+?");
             Regex ESPNIdReg = new Regex(@"([0-9]+)");
             Regex NeneException = new Regex(@".*Nen.*", RegexOptions.IgnoreCase);
             string Page = WebPageToString( url );
@@ -114,9 +117,13 @@ namespace StatGrabber
                 {
                     p.FirstName = PlayerName[0].Groups[1].Value;
                     p.LastName = PlayerName[0].Groups[2].Value;
+                    if (p.FirstName.Length == 2)
+                    {
+                        p.FirstName = p.FirstName.Substring(0, 1);
+                    }
                 }
 
-                if( i.Index >= HomeAfterThis )
+                if ( i.Index >= HomeAfterThis )
                 {
                     p.TeamName = TeamMatches[1].Groups[1].Value;
                 }
