@@ -26,5 +26,6 @@ namespace StatGrabber
         public int Turnovers = 0;
         public int PlusMinus = 0;
         public int ESPNId = 0;
+        public int NBAId = 0;
     };
 }
