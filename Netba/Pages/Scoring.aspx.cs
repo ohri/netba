@@ -27,7 +27,9 @@ namespace netba.Pages
 			if( !DBUtilities.IsUserAdmin( Page.User.Identity.Name ) )
 			{
 				Response.Redirect( "/Static/notauthorized.html" );
-			}		
+			}
+
+            Server.ScriptTimeout = 300;
 
 			// Put user code to initialize the page here
 			if( !IsPostBack )
@@ -95,7 +97,7 @@ namespace netba.Pages
                 }
                 catch( StatGrabber.StatGrabberException ex )
                 {
-                    tbOutput.Text += ex.Message;
+                    tbOutput.Text += ex.Message + "\r\n";
                 }
             }
 

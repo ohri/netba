@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 
 [Serializable]
-[Microsoft.SqlServer.Server.SqlUserDefinedAggregate( Format.UserDefined, MaxByteSize=8000 )]
+[SqlUserDefinedAggregate( Format.UserDefined, MaxByteSize=8000 )]
 public struct TradeAggregator : IBinarySerialize
 {
     private List<string> values;

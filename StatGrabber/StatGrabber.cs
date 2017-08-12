@@ -54,71 +54,77 @@ namespace StatGrabber
             JObject sb = JObject.Parse(page);
             JArray performances = (JArray)sb["resultSets"][0]["rowSet"];
             Regex ExtractPlayerName = new Regex(@"^([\w\.\'-]+)\s+?([\w\.\'-]+(?:\s[\w.]+)?)(?:.*?)");
-            foreach (var perf in performances)
+            try
             {
-                if(((string)perf[7]).Length > 0 )
+                foreach (var perf in performances)
                 {
-                    // DNP
-                    continue;
-                }
-                PlayerPerformance p = new PlayerPerformance();
-                p.NBAId = Int32.Parse( (string)perf[4] );
-                p.Assists = Int32.Parse((string)perf[21]);
-                p.Blocks = Int32.Parse((string)perf[23]);
-                p.DefensiveRebounds = Int32.Parse((string)perf[19]);
-
-                // these come in a single string
-                try
-                {
-                    if (((string)perf[5]).Equals("Nene"))
+                    if (((string)perf[7]).Length > 0)
                     {
-                        p.FirstName = "Nene";
-                        p.LastName = "Hilario";
+                        // DNP
+                        continue;
+                    }
+                    PlayerPerformance p = new PlayerPerformance();
+                    p.NBAId = Int32.Parse((string)perf[4]);
+                    p.Assists = Int32.Parse((string)perf[21]);
+                    p.Blocks = Int32.Parse((string)perf[23]);
+                    p.DefensiveRebounds = Int32.Parse((string)perf[19]);
+
+                    // these come in a single string
+                    try
+                    {
+                        if (((string)perf[5]).Equals("Nene"))
+                        {
+                            p.FirstName = "Nene";
+                            p.LastName = "Hilario";
+                        }
+                        else
+                        {
+                            MatchCollection PlayerName = ExtractPlayerName.Matches((string)perf[5]);
+                            p.FirstName = PlayerName[0].Groups[1].Value;
+                            p.LastName = PlayerName[0].Groups[2].Value;
+                            if (p.FirstName.Length == 2)
+                            {
+                                p.FirstName = p.FirstName.Substring(0, 1);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        StatGrabberException ex = new StatGrabberException(
+                            "Having trouble with: " + (string)perf[5]);
+                        throw ex;
+                    }
+
+                    // this comes as MM:SS 
+                    string[] minuteSplit = ((string)perf[8]).Split(':');
+                    if (int.Parse(minuteSplit[1]) > 29)
+                    {
+                        p.Minutes = int.Parse(minuteSplit[0]) + 1;
                     }
                     else
                     {
-                        MatchCollection PlayerName = ExtractPlayerName.Matches((string)perf[5]);
-                        p.FirstName = PlayerName[0].Groups[1].Value;
-                        p.LastName = PlayerName[0].Groups[2].Value;
-                        if (p.FirstName.Length == 2)
-                        {
-                            p.FirstName = p.FirstName.Substring(0, 1);
-                        }
+                        p.Minutes = int.Parse(minuteSplit[0]);
                     }
-                }
-                catch (Exception e)
-                {
-                    StatGrabberException ex = new StatGrabberException(
-                        "Having trouble with: " + (string)perf[5] );
-                    throw ex;
-                }
 
-                // this comes as MM:SS 
-                string[] minuteSplit = ((string)perf[8]).Split(':');
-                if (int.Parse(minuteSplit[1]) > 29)
-                {
-                    p.Minutes = int.Parse(minuteSplit[0]) + 1;
+                    p.Fouls = Int32.Parse((string)perf[25]);
+                    p.FTAttempts = Int32.Parse((string)perf[16]);
+                    p.FTsMade = Int32.Parse((string)perf[15]);
+                    p.OffensiveRebounds = Int32.Parse((string)perf[18]);
+                    p.PlusMinus = Int32.Parse((string)perf[27]);
+                    p.ShotAttempts = Int32.Parse((string)perf[10]);
+                    p.ShotsMade = Int32.Parse((string)perf[9]);
+                    p.Steals = Int32.Parse((string)perf[22]);
+                    p.TeamName = (string)perf[2];
+                    p.ThreeAttempts = Int32.Parse((string)perf[13]);
+                    p.ThreesMade = Int32.Parse((string)perf[12]);
+                    p.Turnovers = Int32.Parse((string)perf[24]);
+                    perfs.Add(p);
                 }
-                else
-                {
-                    p.Minutes = int.Parse(minuteSplit[0]);
-                }
-
-                p.Fouls = Int32.Parse((string)perf[25]);
-                p.FTAttempts = Int32.Parse((string)perf[16]);
-                p.FTsMade = Int32.Parse((string)perf[15]);
-                p.OffensiveRebounds = Int32.Parse((string)perf[18]);
-                p.PlusMinus = Int32.Parse((string)perf[27]);
-                p.ShotAttempts = Int32.Parse((string)perf[10]);
-                p.ShotsMade = Int32.Parse((string)perf[9]);
-                p.Steals = Int32.Parse((string)perf[22]);
-                p.TeamName = (string)perf[2];
-                p.ThreeAttempts = Int32.Parse((string)perf[13]);
-                p.ThreesMade = Int32.Parse((string)perf[12]);
-                p.Turnovers = Int32.Parse((string)perf[24]);
-                perfs.Add(p);
             }
-
+            catch (Exception ex)
+            {
+                throw new StatGrabberException("Having trouble parsing info from game " + GameId);
+            }
             return perfs;
         }
 

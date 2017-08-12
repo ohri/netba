@@ -149,7 +149,7 @@ namespace StatGrabberTest
                 }
                 catch( StatGrabber.StatGrabberException ex )
                 {
-                    tbOutput.Text += ex.Message;
+                    tbOutput.Text += ex.Message + "\r\n";
                 }
             }
 
