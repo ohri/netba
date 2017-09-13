@@ -7,6 +7,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using System.Data.Common;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Text;
 
 namespace StatGrabber
 {
@@ -185,6 +186,8 @@ namespace StatGrabber
 
         public string ScrapeNBAApi(string endpoint, Dictionary<string, string> parameters)
         {
+            System.Threading.Thread.Sleep(1000);
+
             string url = "http://stats.nba.com/stats/" + endpoint + "?";
             bool first = true;
             foreach (KeyValuePair<string,string> param in parameters)
@@ -201,10 +204,19 @@ namespace StatGrabber
             }
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             request.Referer = "http://stats.nba.com/scores/";
             request.Method = "GET";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36";
+			request.Headers["Dnt"] = "1";
+			request.Headers["Accept-Encoding"] = "gzip, deflate, sdch";
+			request.Headers["Accept-Language"] = "en-US,en;q=0.8,af;q=0.6";
+			request.Headers["origin"] = "http://stats.nba.com";
             WebResponse wres = request.GetResponse();
-            StreamReader sr = new StreamReader(wres.GetResponseStream());
+            Stream receiveStream = wres.GetResponseStream();
+            Encoding encode = Encoding.GetEncoding("utf-8");
+            // Pipes the stream to a higher level stream reader with the required encoding format. 
+            StreamReader sr = new StreamReader(receiveStream, encode);
             string page = sr.ReadToEnd();
             sr.Close();
             return page;

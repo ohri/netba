@@ -13,7 +13,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/03/2010 20:59:10</publishTime>
     </File>
     <File Include="bin/Logger.dll">
-      <publishTime>08/09/2017 19:48:13</publishTime>
+      <publishTime>09/12/2017 21:38:57</publishTime>
     </File>
     <File Include="bin/Microsoft.ApplicationBlocks.Data.dll">
       <publishTime>11/02/2010 22:51:36</publishTime>
@@ -34,13 +34,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/16/2010 14:42:32</publishTime>
     </File>
     <File Include="bin/Netba.dll">
-      <publishTime>08/09/2017 20:06:47</publishTime>
+      <publishTime>09/12/2017 22:27:38</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>10/27/2016 22:37:36</publishTime>
     </File>
     <File Include="bin/StatGrabber.dll">
-      <publishTime>08/09/2017 19:48:13</publishTime>
+      <publishTime>09/12/2017 22:27:34</publishTime>
     </File>
     <File Include="bin/WebChart.dll">
       <publishTime>11/03/2010 19:46:54</publishTime>
