@@ -59,14 +59,24 @@ namespace StatGrabber
             {
                 foreach (var perf in performances)
                 {
-                    if (((string)perf[7]).Length > 0)
+                    if (((string)perf[7]).Length > 0
+//                        || ((string)perf[7]).Length == 0
+                        )
                     {
                         // DNP
                         continue;
                     }
                     PlayerPerformance p = new PlayerPerformance();
                     p.NBAId = Int32.Parse((string)perf[4]);
-                    p.Assists = Int32.Parse((string)perf[21]);
+                    try
+                    {
+                        p.Assists = Int32.Parse((string)perf[21]);
+                    }
+                    catch( Exception ex )
+                    {
+                        // somtimes a rogue DNP gets through
+                        continue;
+                    }
                     p.Blocks = Int32.Parse((string)perf[23]);
                     p.DefensiveRebounds = Int32.Parse((string)perf[19]);
 

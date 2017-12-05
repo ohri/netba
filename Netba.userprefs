@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{61DB63E7-B356-41CF-8692-E83A61CE882A}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="StatGrabber/StatGrabber.cs">
     <Files>
-      <File FileName="StatGrabber/StatGrabber.cs" Line="186" Column="40" />
+      <File FileName="StatGrabber/StatGrabber.cs" Line="186" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
@@ -11,4 +11,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.Netba PreferredExecutionTarget="MonoDevelop.Default" />
   <MultiItemStartupConfigurations />
+  <DisabledProjects>
+    <String>NetbaTradeAggregator/NetbaTradeAggregator.sqlproj</String>
+  </DisabledProjects>
 </Properties>
