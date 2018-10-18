@@ -133,9 +133,17 @@ namespace StatGrabberTest
 
             StatGrabber.StatGrabber sg = new StatGrabber.StatGrabber();
 
-            ArrayList urls = sg.GetGames( calStatDate.SelectionStart );
+            ArrayList urls = null;
+            try
+            {
+                urls = sg.GetGames(calStatDate.SelectionStart);
+            }
+            catch( Exception ex )
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            tbOutput.Text += "Ran GetGames, got back " + urls.Count + " games\r\n";
+           tbOutput.Text += "Ran GetGames, got back " + urls.Count + " games\r\n";
 
             SqlDatabase db = new SqlDatabase( @"data source=localhost\sqlexpress;initial catalog=netba;user id=netba_web;password=go_muddogs07!;Persist Security Info=true" );
             ArrayList problems = new ArrayList();

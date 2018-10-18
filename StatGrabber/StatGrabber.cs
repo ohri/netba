@@ -42,7 +42,7 @@ namespace StatGrabber
             string endpoint = "boxscoretraditionalv2";
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("GameId", GameId );
-            parameters.Add("Season", "2016-17");
+            parameters.Add("Season", "2018-19");
             parameters.Add("SeasonType", "Regular%20Season");
             parameters.Add("RangeType", "0");
             parameters.Add("StartPeriod", "0");
@@ -198,7 +198,7 @@ namespace StatGrabber
         {
             System.Threading.Thread.Sleep(1000);
 
-            string url = "http://stats.nba.com/stats/" + endpoint + "?";
+            string url = "https://stats.nba.com/stats/" + endpoint + "?";
             bool first = true;
             foreach (KeyValuePair<string,string> param in parameters)
             {
@@ -215,13 +215,16 @@ namespace StatGrabber
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-            request.Referer = "http://stats.nba.com/scores/";
+            request.Referer = "https://stats.nba.com/scores/";
             request.Method = "GET";
-            request.UserAgent = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36";
+            request.Host = "stats.nba.com";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0";
 			request.Headers["Dnt"] = "1";
-			request.Headers["Accept-Encoding"] = "gzip, deflate, sdch";
-			request.Headers["Accept-Language"] = "en-US,en;q=0.8,af;q=0.6";
-			request.Headers["origin"] = "http://stats.nba.com";
+            request.Accept = "application/json, text/plain, */*";
+            request.Headers["Accept-Language"] = "en-US,en;q=0.5";
+            request.Headers["Accept-Encoding"] = "gzip, deflate, br";
+            request.Headers["origin"] = "https://stats.nba.com";
+            request.KeepAlive = true;
             WebResponse wres = request.GetResponse();
             Stream receiveStream = wres.GetResponseStream();
             Encoding encode = Encoding.GetEncoding("utf-8");
